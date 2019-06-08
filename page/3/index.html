@@ -254,6 +254,190 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/ReverseInteger解题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FightCrap">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FightCrap's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/07/ReverseInteger解题/" itemprop="url">LeetCode集锦（二） - reverse integer</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:31:11+08:00">
+                2019-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/07/ReverseInteger解题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/ReverseInteger解题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Given a 32-bit signed integer, reverse digits of an integer. </span><br><span class="line">Example 1: </span><br><span class="line">Input: 123</span><br><span class="line">Output: 321</span><br><span class="line"> Example 2: </span><br><span class="line">Input: -123</span><br><span class="line">Output: -321</span><br><span class="line"> Example 3: </span><br><span class="line">Input: 120</span><br><span class="line">Output: 21</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Note: </span><br><span class="line">Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231, 231 − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.</span><br></pre></td></tr></table></figure>
+
+<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
+<p>给定一个32位带符号整数，对其进行反数运算。<br>示例1:<br>输入:123<br>输出:321<br>示例2:<br>输入:-123<br>输出:-321<br>示例3:<br>输入:120<br>输出:21<br>注意:<br>假设我们处理的环境只能存储32位带符号整数范围内的整数:[- 231,231 - 1]。对于这个问题，假设函数在反向整数溢出时返回0。</p>
+</blockquote>
+<hr>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题字面含义其实是对一个整数进行反转，这边需要注意三个点：</p>
+<ol>
+<li>带符号</li>
+<li>32位数字，反转后可能会溢出</li>
+<li>翻转后开头为0的要去掉。</li>
+</ol>
+<p>思路一：我们可以利用String来进行直接的反转，对目标数先取绝对值，然后翻转，然后去掉头部为0的数字，并且反转完后把符号带上，如果大于Integer，则返回0，这边可以用long来代替，或者在转化integer的时候进行异常捕获</p>
+<p>思路二：直接进行数字的翻转，先取绝对值，一个个位数获取下来，然后在拼接为最终结果，并除去头部为0的值，最后赋予富豪，用long来代替，比较integer的最大值。</p>
+<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
+<li><p>第一种解体方法，按照我们的思路来编辑，代码如下</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//首先把0特殊去掉</span><br><span class="line">   if (x == 0) &#123;</span><br><span class="line">       return 0;</span><br><span class="line">   &#125;</span><br><span class="line">   //如果是负数，则变化成正数</span><br><span class="line">   int temp = x;</span><br><span class="line">   boolean isMinus = false;</span><br><span class="line">   if (x &lt; 0) &#123;</span><br><span class="line">       temp = -temp;</span><br><span class="line">       isMinus = true;</span><br><span class="line">   &#125;</span><br><span class="line">   //翻转,</span><br><span class="line">   StringBuilder stringBuilder = new StringBuilder(temp+&quot;&quot;).reverse();</span><br><span class="line">   //除去前面的0</span><br><span class="line">   int zoreCount = 0;</span><br><span class="line">   for (int i = 0; i &lt; stringBuilder.length(); i++) &#123;</span><br><span class="line">       if (stringBuilder.charAt(i) == &apos;0&apos;) &#123;</span><br><span class="line">           zoreCount++;</span><br><span class="line">       &#125; else &#123;</span><br><span class="line">           break;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   if(zoreCount&gt;0)&#123;</span><br><span class="line">       stringBuilder.delete(0,zoreCount);</span><br><span class="line">   &#125;</span><br><span class="line">   try&#123;</span><br><span class="line">       return Integer.valueOf(isMinus?&quot;-&quot;+stringBuilder.toString():stringBuilder.toString());</span><br><span class="line">   &#125;catch (Exception e)&#123;</span><br><span class="line">       return 0;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p> <strong>时间复杂度</strong>:
+ 该方案用了并没有使用循环，其实在翻转过程中应该是用来循环，但是这边不计算，这边在判断头部为0的情况下，循环来一次，所以记为n,所以f(n)=((log10(n)-1)+0)/2=log10(n)/2;所以O(f(n))=O(log10(n)),即T(log10(n))=O(n)</p>
+<p> <strong>空间复杂度</strong>:
+ 该方案使用了StringBuilder,相当于复刻了一个数组，所以空间复杂度是O(1);</p>
+</li>
+<li><p>第二种解题方法，代码如下:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//如果是负数，则变化成正数</span><br><span class="line">   long temp = x;</span><br><span class="line">   boolean isMinus = false;</span><br><span class="line">   if (x &lt; 0) &#123;</span><br><span class="line">       temp = -temp;</span><br><span class="line">       isMinus = true;</span><br><span class="line">   &#125;</span><br><span class="line">   long value = 0;</span><br><span class="line">   //获取长度。</span><br><span class="line">   while (temp / 10 != 0 || temp % 10 != 0) &#123;</span><br><span class="line">       long remainder = temp % 10;</span><br><span class="line"></span><br><span class="line">       value = value * 10 + remainder;</span><br><span class="line">       if (value &gt; Integer.MAX_VALUE) &#123;</span><br><span class="line">           return 0;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       temp = temp / 10;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   return (int) value * (isMinus ? -1 : 1);</span><br></pre></td></tr></table></figure>
+
+<p> <strong>时间复杂度</strong>:
+ 该方案用了单层循环,所以f(n)=(log10(n)+1)/2=log10(n)/2;所以O(f(n))=O(log10(n))=O(log10(n)),即T(n)=O(log10(n))</p>
+<p> <strong>空间复杂度</strong>:
+ 该方案并没有使用额外的空间在存储数值，所以为O(1);</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，方案2没有利用到字符串，直接由本身出发，空间和时间上都比方案一快,唯一一点是需要用long来控制，万一int是负数最小值，一旦变成正数，就溢出了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/TwoSum解题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -478,7 +662,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
