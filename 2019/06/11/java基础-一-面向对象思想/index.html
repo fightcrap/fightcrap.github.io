@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#FFDAB9">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#FFDAB9">
+
+
+
+
+
+  <meta name="keywords" content="基础,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言java是一门面向对象的语言，在学习java前，先要理解面向对象这个概念，区别于c这类的面向过程语言，面向对象有着什么一样的特点呢？先上一张思维导图吧：  对象什么是对象 问题空间中的元素及其在解空间中的表示  这句话摘抄自java编程思想，是一句很难理解的话语（果然大佬的总结概括不是一般的抽象）。那么什么是问题空间？什么是在解空间呢？  问题空间：问题空间是问题解决者对一个问题所达到的全部认">
+<meta name="keywords" content="基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java基础(一)-面向对象思想">
+<meta property="og:url" content="https://fightcrap.github.io/2019/06/11/java基础-一-面向对象思想/index.html">
+<meta property="og:site_name" content="FightCrap&#39;s blog">
+<meta property="og:description" content="前言java是一门面向对象的语言，在学习java前，先要理解面向对象这个概念，区别于c这类的面向过程语言，面向对象有着什么一样的特点呢？先上一张思维导图吧：  对象什么是对象 问题空间中的元素及其在解空间中的表示  这句话摘抄自java编程思想，是一句很难理解的话语（果然大佬的总结概括不是一般的抽象）。那么什么是问题空间？什么是在解空间呢？  问题空间：问题空间是问题解决者对一个问题所达到的全部认">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/fightcrap/javaStudy/master/image/java/base/46AC7A10-A89C-42E9-BEAA-2D13BDD02A91.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/fightcrap/javaStudy/master/image/java/base/oop.jpg">
+<meta property="og:updated_time" content="2019-06-11T12:55:33.546Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java基础(一)-面向对象思想">
+<meta name="twitter:description" content="前言java是一门面向对象的语言，在学习java前，先要理解面向对象这个概念，区别于c这类的面向过程语言，面向对象有着什么一样的特点呢？先上一张思维导图吧：  对象什么是对象 问题空间中的元素及其在解空间中的表示  这句话摘抄自java编程思想，是一句很难理解的话语（果然大佬的总结概括不是一般的抽象）。那么什么是问题空间？什么是在解空间呢？  问题空间：问题空间是问题解决者对一个问题所达到的全部认">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/fightcrap/javaStudy/master/image/java/base/46AC7A10-A89C-42E9-BEAA-2D13BDD02A91.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fightcrap.github.io/2019/06/11/java基础-一-面向对象思想/">
+
+
+
+
+
+  <title>java基础(一)-面向对象思想 | FightCrap's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FightCrap's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Welcome to FightCrap's bolg</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/11/java基础-一-面向对象思想/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FightCrap">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FightCrap's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java基础(一)-面向对象思想</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-11T09:09:42+08:00">
+                2019-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/11/java基础-一-面向对象思想/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/11/java基础-一-面向对象思想/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>java是一门面向对象的语言，在学习java前，先要理解面向对象这个概念，区别于c这类的面向过程语言，面向对象有着什么一样的特点呢？先上一张思维导图吧：<br><img src="https://raw.githubusercontent.com/fightcrap/javaStudy/master/image/java/base/46AC7A10-A89C-42E9-BEAA-2D13BDD02A91.png" alt="面向对象思维导图"></p>
+<hr>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><h4 id="什么是对象"><a href="#什么是对象" class="headerlink" title="什么是对象"></a>什么是对象</h4><blockquote>
+<p>问题空间中的元素及其在解空间中的表示</p>
+</blockquote>
+<p>这句话摘抄自<em>java编程思想</em>，是一句很难理解的话语（果然大佬的总结概括不是一般的抽象）。那么什么是问题空间？什么是在解空间呢？</p>
+<ol>
+<li><p>问题空间：问题空间是问题解决者对一个问题所达到的全部认识状态，它是由问题解决者利用问题所包含的信息和已贮存的信息主动地构成的。一般来说包括3部分：</p>
+<ul>
+<li>初始状态 – 开始时的不完全的信息或令人不满意的状况，</li>
+<li>目标状态 – 你希望获得的信息或状态或者说是目标状态</li>
+<li>操作  –为了从初始状态迈向目标状态，你可能采取的步骤</li>
+</ul>
+<p>如果拿方法来类比这段内容，初始状态也就是入参，目标状态是结果或者返回值，操作就是方法体啦。</p>
+</li>
+<li><p>在解空间：emmmm这个没有找到具体的解释，不过有解空间的解释，应该类似：n元齐次线性方程组的解集S={x|Ax=0}是一个向量空间，称为齐次线性方程组的解空间。相当于问题的结果集。<br>大致概念解释完成了，貌似还是不好理解，用个人的话来讲：问题空间其实就是我们的问题，这个问题有什么条件，运算的过程，和问题解决后的状态。问题空间的元素都可以是一个对象。对象可以是一个有着独立特性的实体。解空间就是结果集了。问题的结果也是一个对象。<strong>简单的说，对象其实就是一个可描述的实体，一个可描述的实体都可以是对象</strong></p>
+</li>
+</ol>
+<h4 id="对象的五个基本特性"><a href="#对象的五个基本特性" class="headerlink" title="对象的五个基本特性"></a>对象的五个基本特性</h4><ul>
+<li>万物皆对象（也就是所以可以描述的实体都可以是一个对象）</li>
+<li>程序是对象的集合，它们通过发送消息的方式告知彼此要做的事情（发送消息其实就是方法的调用，或者通知）</li>
+<li>每个对象都有着自己的以及其他对象所构成的存储（对象的构成可以是其他的对象组合，或者自己本身的一下特性组合而成）</li>
+<li>每个对象都有着其类型：对象都有着自己的归属标示，比如它是属于那一类的对象，是人还是其他的可描述的类别。每一个对象都是其归属标示的一个实例</li>
+<li>某一特定类型的所有对象都可以接收相同的信息（也就是它们对外开发的通信方式都是一致的）</li>
+</ul>
+<p>以上就是对象的全部概念了，解释完了对象，那就要解释下对象的归属标示了，在java中这个称之为类</p>
+<h4 id="什么是类"><a href="#什么是类" class="headerlink" title="什么是类"></a>什么是类</h4><p>在上文有提到过每个对象都拥有其类型，这个类型在java中称之为类，类是具有相同特性（数据元素和行为）的对象集合</p>
+<ul>
+<li>数据元素：我们一般当成特征，即该对象中有着那些属性来描述，比如长方形的长和宽。</li>
+<li>行为：是方法的总称，如果我们把对象比作个体，那么方法就是个体可以做的事情，拥有的行为</li>
+</ul>
+<hr>
+<p>上文解释了对象的概念，但是我们主要还是讲解一下面向对象，所有来解释下面向对象的内容吧。</p>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><h4 id="什么是面向对象"><a href="#什么是面向对象" class="headerlink" title="什么是面向对象"></a>什么是面向对象</h4><p>面向对象思想可以看作一种在程序中包含各种独立而又互相调用的对象的思想。<br>与面向过程的做法不同，面向过程我们可以理解为流水线似操作，类似与我们现在机器化操作，对应特定过程，制定特定的方法。而面向对象就不同了，面向对象是基于对象，也就是说由对象的相互交流，协作来完成问题的解决，相当于我们的工人们做一些活，他们有着自己的技能，可以适用与不同的场景，交互配合实现。<br><img src="https://raw.githubusercontent.com/fightcrap/javaStudy/master/image/java/base/oop.jpg" alt="面向对象和面向过程区别"><br>第一眼看貌似都是一样，无非就是面向对象多了一个维修工多概念，没错，维修工其实就是一个对象，面向对象把流程的实现都封装到了对象中，由对象的行为或者属性来处理问题。维修工是一个归类，不同的维修工是其具体表现。对于场景，流程是不会变的，更多是变化细节，在面向过程中，没错改动就是修改流程，而面向对象则是修改其行为，似的该对象的行为能适配流程。具有很强的灵活性和可维护性</p>
+<h4 id="面向对象的三大特征"><a href="#面向对象的三大特征" class="headerlink" title="面向对象的三大特征"></a>面向对象的三大特征</h4><ul>
+<li>封装<br>隐藏一切可隐藏的细节，只暴露最简单的行为。也就是说<strong>通信方不需要知道被通信方的实现，只需要知道如何通信即可，也就是被通信方的实现对通信方而言是透明对</strong><br>在java中，我们一般只会暴露类的api，而不会告知是如何实现的，对于调用方而言，实现细节都是透明的。</li>
+<li>继承<br>继承指的是一种能力，<strong>是由当前类派生出新类的过程</strong>，可以在现有类的基础上构建新的类。<br>在java中：由继承创建的新类我们统称为子类/派生类；而被继承的类称为父类/基类。Object是所有的父类。还有一点java中，是单继承模式的。</li>
+<li>多态<br>是同一种行为具有不同表现活形态的能力，是对象的多种表现能力的体现。<br>多态基础是继承，允许子对象赋予父对象不同的能力。<br>形成多态的条件有：<ol>
+<li>继承基类</li>
+<li>重写</li>
+<li>父类引用指向子类对象<br>在java中与多态有关系的是重写：由子类重新定义父类的行为，也就是条件2。而重载却不是，重载是类内部多个相同行为，不同参数的一个多样化。和多态没有关系。</li>
+</ol>
+</li>
+</ul>
+<h4 id="面向对象的5大原则"><a href="#面向对象的5大原则" class="headerlink" title="面向对象的5大原则"></a>面向对象的5大原则</h4><p>S.O.L.I.D简称面向对象的5大原则，分别是：单一原则，开放封闭原则，里氏替换原则，接口隔离原则，依赖倒置原则。虽然大多数我们在编写程序的时候是不太会记得这些原则，这些原则也不应该使用在编写程序上，而是在设计程序上面。准确来说，这是一个基本的优化原则。</p>
+<ul>
+<li>单一原则<blockquote>
+<p>指某一个类的功能，职责要单一，不能包罗万象。</p>
+</blockquote>
+</li>
+</ul>
+<p>也就是对于类要足够的细化，对行为足够的明确，隔离不必要的行为。</p>
+<ul>
+<li>开放封闭原则<blockquote>
+<p>一个模块在扩展性方面应该是开放的，而在更改性上面应该是封闭的。</p>
+</blockquote>
+</li>
+</ul>
+<p>这个其实很好理解，比如我们在一个模块中需要新增一个功能（不是扩展性的），而这个新功能和其中一个功能有很大一部分相似，一般情况下，我们修改下原接口，多个特判形式的编写，其实就可以解决问题，但是这样子做不符合开放封闭原则。我们不应该在更改上面是开放的，改动之前的逻辑，而是应该新开一个接口，扩展功能，并把两部分相同的地方抽象出来。</p>
+<ul>
+<li>里氏替换原则<blockquote>
+<p>子类可以出现在父类能够出现的任何地方，并代替它<br>这句话就是父类能使用的地方，子类也都可以代替它。</p>
+</blockquote>
+</li>
+<li>依赖倒置原则<blockquote>
+<p>实体必须依赖抽象而不是具体实现</p>
+</blockquote>
+</li>
+</ul>
+<p>这个就不太好理解了,换个方式说:</p>
+<ol>
+<li>高层次的模块不应该依赖低层次的实现</li>
+<li>高层次的模块应该依赖抽象<br>emmm更加不好理解了，最简单的来说，就是程序应该依赖抽象接口，而不是依赖具体的实现。拿很简单的例子而言，我们在代码中声明对象的时候，是否都是XXX x=new XXX(),其实这种就是依赖了具体的实现，因为后面指待的就是特定的XXX类，那么应该怎么样的？这边就要借助设计模式中的抽象工厂模式（注意是抽象哦，因为不依赖具体的实现），利用工厂模式来代替直接声明，这样子做有个很大好处，一旦某一天XXX类要被替换了，那安装之前的方式，我们是不是要该全部XXX类所在的地方？这样子很容易出现遗漏。而利用了抽象工厂模式，我们其实只要该该工厂模式内部的实现一个地方就好了，如果要替换工厂模式，也直接替换工厂模式的实现就好了（所以为嘛是抽象工厂模式了），这样程序就有很好的扩展性和灵活性。<ul>
+<li>接口隔离原则<blockquote>
+<p>拆分非常庞大臃肿的接口成为更小和更具体的接口</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<p>个人理解上呢，这个相当于是接口的单一原则，也就是接口的职责要足够细化，功能单一，这样子使用方就不需要依赖它实现不使用的方法了</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>大致内容就这样子描述完了，这章基本描述了对象，面向对象思想里面的部分内容，讲了大概的概念，全是文字，好枯燥的呦。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/基础/" rel="tag"># 基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/10/BinaryTreeLevelOrderTraversal解题/" rel="next" title="LeetCode 集锦（二十四） - 第 107 题 Binary Tree Level Order Traversal">
+                <i class="fa fa-chevron-left"></i> LeetCode 集锦（二十四） - 第 107 题 Binary Tree Level Order Traversal
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg" alt="FightCrap">
+            
+              <p class="site-author-name" itemprop="name">FightCrap</p>
+              <p class="site-description motion-element" itemprop="description">制造bug的永动机</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/fightcrap" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:fightingcrap@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象"><span class="nav-number">2.</span> <span class="nav-text">对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是对象"><span class="nav-number">2.1.</span> <span class="nav-text">什么是对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象的五个基本特性"><span class="nav-number">2.2.</span> <span class="nav-text">对象的五个基本特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是类"><span class="nav-number">2.3.</span> <span class="nav-text">什么是类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象"><span class="nav-number">3.</span> <span class="nav-text">面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是面向对象"><span class="nav-number">3.1.</span> <span class="nav-text">什么是面向对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面向对象的三大特征"><span class="nav-number">3.2.</span> <span class="nav-text">面向对象的三大特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面向对象的5大原则"><span class="nav-number">3.3.</span> <span class="nav-text">面向对象的5大原则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FightCrap</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://fightcrap.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://fightcrap.github.io/2019/06/11/java基础-一-面向对象思想/';
+          this.page.identifier = '2019/06/11/java基础-一-面向对象思想/';
+          this.page.title = 'java基础(一)-面向对象思想';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://fightcrap.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
