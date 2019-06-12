@@ -254,6 +254,360 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/Sqrt(X)解题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FightCrap">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FightCrap's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/07/Sqrt(X)解题/" itemprop="url">LeetCode集锦（十七） - 第69题 Sqrt(X)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:49:32+08:00">
+                2019-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/07/Sqrt(X)解题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/Sqrt(X)解题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Implement int sqrt(int x). </span><br><span class="line"></span><br><span class="line"> Compute and return the square root of x, where x is guaranteed to be a non-negative integer. </span><br><span class="line"></span><br><span class="line"> Since the return type is an integer, the decimal digits are truncated and only the integer part of the result is returned. </span><br><span class="line"></span><br><span class="line"> Example 1: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: 4</span><br><span class="line">Output: 2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Example 2: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: 8</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: The square root of 8 is 2.82842..., and since </span><br><span class="line">             the decimal part is truncated, 2 is returned.</span><br></pre></td></tr></table></figure>
+
+<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
+<p>实现int sqrt(int x)。<br>计算并返回x的平方根，其中x保证是一个非负整数。<br>由于返回类型是整数，因此将截断小数，只返回结果的整数部分。<br>示例1:<br>输入:4<br>输出:2<br>示例2:<br>输入:8<br>输出:2<br>说明:8的平方根是2.82842…,自<br>小数部分被截断，返回2。</p>
+</blockquote>
+<hr>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题是找一个数是当前数的平方根，如果是小数，则返回舍弃小数的值。我们可以用遍历的方式，来判断是不是，当时这边需要考虑一下越界的问题，其实也可以不关注，毕竟可以得出越界的上限的平方根是多少，就可以避免这个问题。除了遍历，我们也可以用java自带的Math类来解决，是最简单的。除此之外，本题是找值，而且是在特定范围内找一个值，就可以想到是否可以用二分法来简短查询时间。</p>
+<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
+<li><p>按照我们的思路来编辑，代码如下</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">if (x &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for (int i =x/2+1; i&gt;=0; i=i/2) &#123;</span><br><span class="line">        long result = 1L*i * i;</span><br><span class="line">        if (result == x) &#123;</span><br><span class="line">            return i;</span><br><span class="line">        &#125;</span><br><span class="line">        if (result &gt; x) &#123;</span><br><span class="line">            return i - 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br></pre></td></tr></table></figure>
+
+<p> <strong>时间复杂度</strong>:
+ 该方案用了循环m所以f(n)=(n/2)=n;所以O(f(n))=O(n/2),即T(n)=O(n)</p>
+<p> <strong>空间复杂度</strong>:
+ 该方案使用了没有使用额外空间，所以空间复杂度是O(n)=O(1);</p>
+</li>
+<li><p>使用二分法，代码如下</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">if (x &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    int start = 0;</span><br><span class="line">    int end = x;</span><br><span class="line">    while (start &lt;= end) &#123;</span><br><span class="line">        int index = (start + end) / 2;</span><br><span class="line">        long sum = 1L * index * index;</span><br><span class="line">        if (sum &gt; x) &#123;</span><br><span class="line">            end = index - 1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            start = index + 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return end;</span><br></pre></td></tr></table></figure>
+
+<p> <strong>时间复杂度</strong>:
+ 该方案用了循环m所以f(n)=(logn)=n;所以O(f(n))=O(logn),即T(n)=O(logn)</p>
+<p> <strong>空间复杂度</strong>:
+ 该方案使用了没有使用额外空间，所以空间复杂度是O(n)=O(1);</p>
+</li>
+<li><p>借用Math类，代码如下</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (x &lt;= 0) &#123;</span><br><span class="line">       return 0;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   return (int)Math.sqrt(x);</span><br></pre></td></tr></table></figure>
+
+<p> <strong>时间复杂度</strong>:
+ 该方案用了循环m所以f(n)=(1)=n;所以O(f(n))=O(1),即T(n)=O(1)</p>
+<p> <strong>空间复杂度</strong>:
+ 该方案使用了没有使用额外空间，所以空间复杂度是O(n)=O(1);</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉, 在特地范围内，而且还是有序的，我们自然可以想到二分法来简化遍历，由于这题是需要最近的最小值，所以当end–后，大的值就变成来最小值，刚刚好满足。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/AddBinary解题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FightCrap">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FightCrap's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/07/AddBinary解题/" itemprop="url">LeetCode集锦（十六） - 第67题 Add Binary</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:49:07+08:00">
+                2019-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/07/AddBinary解题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/AddBinary解题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Given two binary strings, return their sum (also a binary string). </span><br><span class="line"></span><br><span class="line"> The input strings are both non-empty and contains only characters 1 or 0. </span><br><span class="line"></span><br><span class="line"> Example 1: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: a = &quot;11&quot;, b = &quot;1&quot;</span><br><span class="line">Output: &quot;100&quot; </span><br><span class="line"></span><br><span class="line"> Example 2: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: a = &quot;1010&quot;, b = &quot;1011&quot;</span><br><span class="line">Output: &quot;10101&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
+<p>给定两个二进制字符串，返回它们的和(也是一个二进制字符串)。<br>输入字符串都是非空的，并且只包含字符1或0。<br>示例1:<br>输入:a = “11”， b = “1”<br>输出:“100”<br>示例2:<br>输入:a = “1010”， b = “1011”<br>输出:“10101”</p>
+</blockquote>
+<hr>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题是用字符串模拟2精制的加法，就按照逢2进1的方式遍历一遍，如果长度不同，则在把长的覆盖上去。</p>
+<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
+<li><p>按照我们的思路来编辑，代码如下</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">if (a == null || b == null) &#123;</span><br><span class="line">        return a == null ? b : a;</span><br><span class="line">    &#125;</span><br><span class="line">    StringBuilder stringBuilder = new StringBuilder();</span><br><span class="line">    int lenA = a.length() - 1;</span><br><span class="line">    int lenB = b.length() - 1;</span><br><span class="line">    int add = 0;</span><br><span class="line">    while (lenA &gt;= 0 || lenB &gt;= 0 || add &gt; 0) &#123;</span><br><span class="line">        int result = (lenA &gt;= 0 ? a.charAt(lenA) - &apos;0&apos; : 0) + (lenB &gt;= 0 ? b.charAt(lenB) - &apos;0&apos; : 0) + add;</span><br><span class="line">        add = result / 2;</span><br><span class="line">        stringBuilder.append(result % 2);</span><br><span class="line">        lenA--;</span><br><span class="line">        lenB--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return stringBuilder.reverse().toString();</span><br></pre></td></tr></table></figure>
+
+<p> <strong>时间复杂度</strong>:
+ 该方案用了循环m所以f(n)=(n)=n;所以O(f(n))=O(n),即T(n)=O(n)</p>
+<p> <strong>空间复杂度</strong>:
+ 该方案使用了没有使用额外空间，所以空间复杂度是O(n)=O(1);</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉, 之前用StringBuilder的insert方法，发现速度很慢，看了下源码后，它都会移动数组，也就是正常的数组扩容拷贝，所以特别慢，再次就直接用append，然后反转一下，比之前方式要快很多。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/PlusOne解题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1656,368 +2010,6 @@ return index;</code></pre><p> ```
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/MergeTwoSortedList解题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FightCrap">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FightCrap's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/07/MergeTwoSortedList解题/" itemprop="url">LeetCode集锦（七） - 第21题 Merge Two Sorted List</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:42:57+08:00">
-                2019-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/07/MergeTwoSortedList解题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/MergeTwoSortedList解题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists. </span><br><span class="line"></span><br><span class="line"> Example:</span><br><span class="line"></span><br><span class="line">Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4</span><br><span class="line">Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  public class ListNode &#123;</span><br><span class="line">      int val;</span><br><span class="line">      ListNode next;</span><br><span class="line">      ListNode(int x) &#123; val = x; &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
-<p>合并两个已排序的链表，并将其作为一个新列表返回。新列表应该通过将前两个列表的节点拼接在一起来创建。<br>例子:<br>输入:1 - &gt; 2 - &gt; 4,1 - &gt; 3 - &gt; 4<br>输出:1 - &gt; 1 - &gt; 2 - &gt; 3 - &gt; 4 - &gt; 4<br>数据格式：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; public class ListNode &#123;</span><br><span class="line">&gt;      int val;</span><br><span class="line">&gt;     ListNode next;</span><br><span class="line">&gt;      ListNode(int x) &#123; val = x; &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题思路很简单，就是合并两个链表，通过遍历对方式，逐步把另外一个链合并到新的链里面去，我们这边需要额外到两个节点，一个是头节点，因为在遍历的时候需要保证链头还在，才可以返回数据。还有一个是遍历时，当前节点的前一节点。因为可能会插在前面的节点上。</p>
-<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
-<li><p>第一种解题方法，我这边使用了l1为基本链，把l2合并到l1中，新建立了链头，这样方便直接插入比l1头部还小的链，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">if (l1 == null) &#123;</span><br><span class="line">        return l2;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode start = new ListNode(0);</span><br><span class="line">    start.next = l1;</span><br><span class="line">    ListNode before = start;</span><br><span class="line">    while (l1 != null &amp;&amp; l2 != null) &#123;</span><br><span class="line">        if (l1.val &gt; l2.val) &#123;</span><br><span class="line">            ListNode temp = l2;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">            before.next = temp;</span><br><span class="line">            temp.next = l1;</span><br><span class="line">            before = temp;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            before = l1;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (l1 == null) &#123;</span><br><span class="line">        before.next = l2;</span><br><span class="line">    &#125;</span><br><span class="line">    return start.next;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环，循环层数为1，循环次数为l1或l2的最小长度，所以T(n)=O(n)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案没有使用额外的空间，所以空间复杂度是O(1);</p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，本题只想到了一种方法，直接按照思路来。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/ValidParentheses解题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FightCrap">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FightCrap's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/07/ValidParentheses解题/" itemprop="url">LeetCode集锦（六） - 第20题 Valid Parentheses</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:42:09+08:00">
-                2019-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/07/ValidParentheses解题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/ValidParentheses解题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Given a string containing just the characters &apos;(&apos;, &apos;)&apos;, &apos;&#123;&apos;, &apos;&#125;&apos;, &apos;[&apos; and &apos;]&apos;, determine if the input string is valid. </span><br><span class="line"></span><br><span class="line"> An input string is valid if: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Open brackets must be closed by the same type of brackets. </span><br><span class="line"> Open brackets must be closed in the correct order. </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Note that an empty string is also considered valid. </span><br><span class="line"></span><br><span class="line">Example 1: </span><br><span class="line">    Input: &quot;()&quot;</span><br><span class="line">    Output: true</span><br><span class="line"></span><br><span class="line">Example 2: </span><br><span class="line">    Input: &quot;()[]&#123;&#125;&quot;</span><br><span class="line">    Output: true</span><br><span class="line"></span><br><span class="line">Example 3: </span><br><span class="line">    Input: &quot;(]&quot;</span><br><span class="line">    Output: false</span><br><span class="line"></span><br><span class="line">Example 4: </span><br><span class="line">    Input: &quot;([)]&quot;</span><br><span class="line">    Output: false</span><br><span class="line"></span><br><span class="line">Example 5: </span><br><span class="line">    Input: &quot;&#123;[]&#125;&quot;</span><br><span class="line">    Output: true</span><br></pre></td></tr></table></figure>
-
-<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
-<p>给定一个只包含字符’(‘，’)’，’{‘，’}’，’[‘和’]’的字符串，判断输入字符串是否有效。<br>输入字符串在下列情况下有效:  </p>
-<ol>
-<li>开括号必须由相同类型的括号关闭。  </li>
-<li>开括号必须按正确的顺序关闭。  </li>
-<li>注意，空字符串也被认为是有效的。  </li>
-</ol>
-<p>示例1:<br>输入:“()”<br>输出:true<br>示例2:<br>输入:“()(){}”<br>输出:true<br>示例3:<br>输入:“()”<br>输出:false<br>示例4:<br>输入:“(())”<br>输出:false<br>例5:<br>输入:“{[]}”<br>输出:true  </p>
-</blockquote>
-<hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题思路很简单，如果左开符号(类似：(,{,[等),那么不管，或者把对应的压入栈，如果遇到右开，则需要判断离他最近的左开符号是否能成对，不能返回失败，如果能则需要去除，避免下一个判断的影响。<br>这边提供两类思路方案：<br>方案一：不使用额外空间，只用当前数组，我们遇到右开符号，就要向前进行遍历，遇到第一个不为空的字符，判断是否能成对，如果能则继续，不能返回false。如果最终数组都是空字符串，那么符合要求，返回true，不然返回false。</p>
-<p>方案二：使用stack数据结构，把左开符号压入栈中，遇到右开符号，则拿出栈，pop一个，判断是否能成对，如果能则继续，不能返回false，如果最终栈是空的，返回true，否则返回false。</p>
-<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
-<li><p>第一种解体方法，按照我们的思路来编辑，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">    public boolean isValid(String s) &#123;</span><br><span class="line"></span><br><span class="line">    char[] chars = s.toCharArray();</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; chars.length; i++) &#123;</span><br><span class="line">        char indexItem = chars[i];</span><br><span class="line">        char temp = &apos; &apos;;</span><br><span class="line">        switch (indexItem) &#123;</span><br><span class="line">            case &apos;]&apos;:</span><br><span class="line">                temp = &apos;[&apos;;</span><br><span class="line">                break;</span><br><span class="line">            case &apos;&#125;&apos;:</span><br><span class="line">                temp = &apos;&#123;&apos;;</span><br><span class="line">                break;</span><br><span class="line">            case &apos;)&apos;:</span><br><span class="line">                temp = &apos;(&apos;;</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                temp = &apos; &apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp != &apos; &apos; &amp;&amp; !find(chars, i, temp)) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return String.valueOf(chars).trim().length() == 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private boolean find(char[] chars, int lastIndex, char target) &#123;</span><br><span class="line"></span><br><span class="line">    for (int i = lastIndex - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">        char temp = chars[i];</span><br><span class="line">        if (temp == &apos; &apos; || temp == &apos;)&apos; || temp == &apos;]&apos; || temp == &apos;&#125;&apos;) &#123;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        if (chars[i] != target) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        //两者滞空，</span><br><span class="line">        chars[i] = &apos; &apos;;</span><br><span class="line">        chars[lastIndex] = &apos; &apos;;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环，循环层数为2(算上向前遍历)，由于第二层判断计数不好记，设为M,外层循环为n,所以f(n)=(n*M)=Mn;所以O(f(n))=O(Mn),即T(n)=O(n^2)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案没有使用额外的空间，所以空间复杂度是O(1);</p>
-</li>
-<li><p>第二种解题方法，按照我们的思路来编辑，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Stack&lt;Character&gt; stack = new Stack&lt;&gt;();</span><br><span class="line">    int size = s.length();</span><br><span class="line">    for (int i = 0; i &lt; size; i++) &#123;</span><br><span class="line">        char indexChar = s.charAt(i);</span><br><span class="line">        switch (indexChar) &#123;</span><br><span class="line">            case &apos;&#123;&apos;:</span><br><span class="line">                stack.push(&apos;&#125;&apos;);</span><br><span class="line">                break;</span><br><span class="line">            case &apos;[&apos;:</span><br><span class="line">                stack.push(&apos;]&apos;);</span><br><span class="line">                break;</span><br><span class="line">            case &apos;(&apos;:</span><br><span class="line">                stack.push(&apos;)&apos;);</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                if (stack.size() == 0) &#123;</span><br><span class="line">                    return false;</span><br><span class="line">                &#125; else if (stack.pop() != indexChar) &#123;</span><br><span class="line">                    return false;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    return stack.size() == 0;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环，循环层数为1，循环为n,所以f(n)=(n)=n;所以O(f(n))=O(n),即T(n)=O(n)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案使用栈作为额外，额外的空间最坏的情况就是全部入栈，为n，所以空间复杂度是O(n);</p>
-</li>
-<li><p>第三种解题方法，按照我们的思路来编辑，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">LinkedList&lt;Character&gt; linkedList=new LinkedList();</span><br><span class="line">    int size = s.length();</span><br><span class="line">    for (int i = 0; i &lt; size; i++) &#123;</span><br><span class="line">        char indexChar = s.charAt(i);</span><br><span class="line">        switch (indexChar) &#123;</span><br><span class="line">            case &apos;&#123;&apos;:</span><br><span class="line">                linkedList.addFirst(&apos;&#125;&apos;);</span><br><span class="line">                break;</span><br><span class="line">            case &apos;[&apos;:</span><br><span class="line">                linkedList.addFirst(&apos;]&apos;);</span><br><span class="line">                break;</span><br><span class="line">            case &apos;(&apos;:</span><br><span class="line">                linkedList.addFirst(&apos;)&apos;);</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                if (linkedList.size() == 0) &#123;</span><br><span class="line">                    return false;</span><br><span class="line">                &#125; else if (linkedList.getFirst() != indexChar) &#123;</span><br><span class="line">                    return false;</span><br><span class="line">                &#125;</span><br><span class="line">                linkedList.remove(0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return linkedList.size() == 0;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环，循环层数为1，循环为n,所以f(n)=(n)=n;所以O(f(n))=O(n),即T(n)=O(n)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案使用链表作为额外，额外的空间最坏的情况就是全部入链表，为n，所以空间复杂度是O(n);</p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，本题两种思路，三种解题方式，第三种主要是选择的数据结构不同，java自带的Stack是继承Vector，是一个线程安全的，但是在本题不需要考虑安全性，所以加锁的开销是多余的，而且不能一开始就设置Stack的大小，在Vector中使用数组作为存储结构，所以当长度足够长，数组扩容时间和空间损耗会比较大，所以选用LinkedList，没有数组扩容的问题，可以随意增加和删除节点。没有必要线程安全，就没有加锁的额外开销了。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2070,7 +2062,7 @@ return index;</code></pre><p> ```
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
