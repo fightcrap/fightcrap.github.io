@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="FightCrap&#39;s blog">
 <meta property="og:description" content="问题123456789101112131415161718Given a binary tree, find its minimum depth.  The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.  Note: A l">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-18T02:06:26.375Z">
+<meta property="og:updated_time" content="2019-06-18T05:34:25.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MinimumDepthOfBinaryTree解题">
 <meta name="twitter:description" content="问题123456789101112131415161718Given a binary tree, find its minimum depth.  The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.  Note: A l">
@@ -365,10 +365,10 @@
 <hr>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题相对而言也是简单的，求一颗树的最小高度，所以首先要注意最小高度的定义：最小深度是从根节点到最近叶子节点的最短路径上的节点数。这边需要注意几个点：</p>
 <ol>
-<li><p>要是叶子节点，叶子节点指的是没有子节点的节点。如果只是一个节点为努力了，那样子不算叶子节点。</p>
-</li>
-<li><p>是最近的叶子节点。<br>其他其实按照最大深度的方式去执行，就可以做到了</p>
-<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2></li>
+<li>要是叶子节点，叶子节点指的是没有子节点的节点。如果只是一个节点为努力了，那样子不算叶子节点。</li>
+<li>是最近的叶子节点。<br>其他其实按照最大深度的方式去执行，就可以做到了</li>
+</ol>
+<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
 <li><p>按照思路来编写结果</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public int minDepth(TreeNode root) &#123;</span><br><span class="line">        if (root == null) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int right = minDepth(root.right) + 1;</span><br><span class="line">        int left = minDepth(root.left) + 1;</span><br><span class="line">        int min = Math.min(left, right);</span><br><span class="line">        //判断是否有空的节点</span><br><span class="line">        if (min &lt;= 1) &#123;</span><br><span class="line">            return Math.max(right, left);</span><br><span class="line">        &#125;</span><br><span class="line">        return min;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public class TreeNode &#123;</span><br><span class="line">        int val;</span><br><span class="line">        TreeNode left;</span><br><span class="line">        TreeNode right;</span><br><span class="line"></span><br><span class="line">        TreeNode(int x) &#123;</span><br><span class="line">            val = x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 

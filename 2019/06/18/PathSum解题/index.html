@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="FightCrap&#39;s blog">
 <meta property="og:description" content="问题12345678910111213141516171819Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.  Note: A leaf is a n">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-18T05:28:24.199Z">
+<meta property="og:updated_time" content="2019-06-18T05:35:50.041Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PathSum解题">
 <meta name="twitter:description" content="问题12345678910111213141516171819Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.  Note: A leaf is a n">
@@ -365,8 +365,9 @@
 <hr>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题相对而言也是简单的，求一个树的根节点到叶子节点的和为目标值。本题只要注意叶子节点就行：</p>
 <ol>
-<li><p>要是叶子节点，叶子节点指的是没有子节点的节点。如果只是一个节点为努力了，那样子不算叶子节点。<br>其他只要按照遍历的方式，判断是否复合要求</p>
-<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2></li>
+<li>要是叶子节点，叶子节点指的是没有子节点的节点。如果只是一个节点为努力了，那样子不算叶子节点。<br>其他只要按照遍历的方式，判断是否复合要求  </li>
+</ol>
+<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
 <li><p>按照思路来编写结果</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public boolean hasPathSum(TreeNode root, int sum) &#123;</span><br><span class="line">     if (sum &lt; 0 || root == null) &#123;</span><br><span class="line">         return false;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     if (sum == 0 &amp;&amp; root.left == null &amp;&amp; root.right == null) &#123;</span><br><span class="line">         return true;</span><br><span class="line">     &#125;</span><br><span class="line">     boolean left = hasPathSum(root.left, sum - root.val);</span><br><span class="line">     boolean right = hasPathSum(root.right, sum - root.val);</span><br><span class="line"></span><br><span class="line">     return left || right;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> public class TreeNode &#123;</span><br><span class="line">     int val;</span><br><span class="line">     TreeNode left;</span><br><span class="line">     TreeNode right;</span><br><span class="line"></span><br><span class="line">     TreeNode(int x) &#123;</span><br><span class="line">         val = x;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
