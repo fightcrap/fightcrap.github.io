@@ -254,6 +254,358 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/18/PathSum解题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FightCrap">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FightCrap's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/18/PathSum解题/" itemprop="url">PathSum解题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-18T13:27:56+08:00">
+                2019-06-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/18/PathSum解题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/18/PathSum解题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum. </span><br><span class="line"></span><br><span class="line"> Note: A leaf is a node with no children. </span><br><span class="line"></span><br><span class="line"> Example: </span><br><span class="line"></span><br><span class="line"> Given the below binary tree and sum = 22, </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      5</span><br><span class="line">     / \</span><br><span class="line">    4   8</span><br><span class="line">   /   / \</span><br><span class="line">  11  13  4</span><br><span class="line"> /  \      \</span><br><span class="line">7    2      1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> return true, as there exist a root-to-leaf path 5-&gt;4-&gt;11-&gt;2 which sum is 22.</span><br></pre></td></tr></table></figure>
+
+<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
+<p>给定一棵二叉树和一个和，确定该树是否有根到叶的路径，以便将路径上的所有值相加等于给定的和。<br>注意:叶子是没有子节点的节点。<br>例子:<br>给出下面的二叉树，sum = 22，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;      5</span><br><span class="line">&gt;     / \</span><br><span class="line">&gt;     4   8</span><br><span class="line">&gt;    /   / \</span><br><span class="line">&gt;   11  13  4</span><br><span class="line">&gt;  /  \      \</span><br><span class="line">&gt; 7    2      1</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>返回 true, 由于存在根到叶的路径5-&gt;4-&gt;11-&gt;2，其和为22。</p>
+</blockquote>
+<hr>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题相对而言也是简单的，求一个树的根节点到叶子节点的和为目标值。本题只要注意叶子节点就行：</p>
+<ol>
+<li><p>要是叶子节点，叶子节点指的是没有子节点的节点。如果只是一个节点为努力了，那样子不算叶子节点。<br>其他只要按照遍历的方式，判断是否复合要求</p>
+<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2></li>
+<li><p>按照思路来编写结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public boolean hasPathSum(TreeNode root, int sum) &#123;</span><br><span class="line">     if (sum &lt; 0 || root == null) &#123;</span><br><span class="line">         return false;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     if (sum == 0 &amp;&amp; root.left == null &amp;&amp; root.right == null) &#123;</span><br><span class="line">         return true;</span><br><span class="line">     &#125;</span><br><span class="line">     boolean left = hasPathSum(root.left, sum - root.val);</span><br><span class="line">     boolean right = hasPathSum(root.right, sum - root.val);</span><br><span class="line"></span><br><span class="line">     return left || right;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> public class TreeNode &#123;</span><br><span class="line">     int val;</span><br><span class="line">     TreeNode left;</span><br><span class="line">     TreeNode right;</span><br><span class="line"></span><br><span class="line">     TreeNode(int x) &#123;</span><br><span class="line">         val = x;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>时间复杂度</strong>:
+该方案用了遍历的方式，所以为O(n)=O(n)</p>
+<p><strong>空间复杂度</strong>:
+该方案没有使用额外的空间，所以空间复杂度O(n)=O(1)</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，通过递归的方式来遍历每一个子节点，判断当前子节点的差是否满足要求，判断是否是叶子节点，就可以判断是否符合要求。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/18/MinimumDepthOfBinaryTree解题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FightCrap">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FightCrap's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/18/MinimumDepthOfBinaryTree解题/" itemprop="url">MinimumDepthOfBinaryTree解题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-18T10:05:53+08:00">
+                2019-06-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/18/MinimumDepthOfBinaryTree解题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/18/MinimumDepthOfBinaryTree解题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Given a binary tree, find its minimum depth. </span><br><span class="line"></span><br><span class="line"> The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node. </span><br><span class="line"></span><br><span class="line"> Note: A leaf is a node with no children. </span><br><span class="line"></span><br><span class="line"> Example: </span><br><span class="line"></span><br><span class="line"> Given binary tree [3,9,20,null,null,15,7], </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7 </span><br><span class="line"></span><br><span class="line"> return its minimum depth = 2.</span><br></pre></td></tr></table></figure>
+
+<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
+<p>给定一个二叉树，求它的最小深度。<br>最小深度是从根节点到最近叶子节点的最短路径上的节点数。<br>注意:叶子是没有子节点的节点。<br>例子:<br>给定如下树[3,9,20,null,null,15,7]:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;    3</span><br><span class="line">&gt;   / \</span><br><span class="line">&gt;  9  20</span><br><span class="line">&gt;    /  \</span><br><span class="line">&gt;   15   7 </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>返回 最小深度:2</p>
+</blockquote>
+<hr>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题相对而言也是简单的，求一颗树的最小高度，所以首先要注意最小高度的定义：最小深度是从根节点到最近叶子节点的最短路径上的节点数。这边需要注意几个点：</p>
+<ol>
+<li><p>要是叶子节点，叶子节点指的是没有子节点的节点。如果只是一个节点为努力了，那样子不算叶子节点。</p>
+</li>
+<li><p>是最近的叶子节点。<br>其他其实按照最大深度的方式去执行，就可以做到了</p>
+<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2></li>
+<li><p>按照思路来编写结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public int minDepth(TreeNode root) &#123;</span><br><span class="line">        if (root == null) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int right = minDepth(root.right) + 1;</span><br><span class="line">        int left = minDepth(root.left) + 1;</span><br><span class="line">        int min = Math.min(left, right);</span><br><span class="line">        //判断是否有空的节点</span><br><span class="line">        if (min &lt;= 1) &#123;</span><br><span class="line">            return Math.max(right, left);</span><br><span class="line">        &#125;</span><br><span class="line">        return min;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public class TreeNode &#123;</span><br><span class="line">        int val;</span><br><span class="line">        TreeNode left;</span><br><span class="line">        TreeNode right;</span><br><span class="line"></span><br><span class="line">        TreeNode(int x) &#123;</span><br><span class="line">            val = x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>时间复杂度</strong>:
+该方案用了遍历的方式，所以为O(n)=O(n)</p>
+<p><strong>空间复杂度</strong>:
+该方案没有使用额外的空间，所以空间复杂度O(n)=O(1)</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，通过递归的方式来获取每一个子节点的深度，判断是否有叶子节点，然后获取最小的深度。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/12/ConvertSortedArrayToBinarySearchTree解题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1716,351 +2068,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/RemoveDuplicatesFromSortedList解题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FightCrap">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FightCrap's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/07/RemoveDuplicatesFromSortedList解题/" itemprop="url">LeetCode集锦（十九） - 第83题 Remove Duplicates from sorted list</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:50:28+08:00">
-                2019-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/07/RemoveDuplicatesFromSortedList解题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/RemoveDuplicatesFromSortedList解题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Given a sorted linked list, delete all duplicates such that each element appear only once. </span><br><span class="line"></span><br><span class="line"> Example 1: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: 1-&gt;1-&gt;2</span><br><span class="line">Output: 1-&gt;2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Example 2: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: 1-&gt;1-&gt;2-&gt;3-&gt;3</span><br><span class="line">Output: 1-&gt;2-&gt;3</span><br></pre></td></tr></table></figure>
-
-<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
-<p>给定一个已排序的链表，删除所有重复项，使每个元素只出现一次。<br>示例1:<br>输入:1 - &gt; 1 - &gt; 2<br>输出:1 - &gt; 2<br>示例2:<br>输入:1 - &gt; 1 - &gt; 2 - &gt; 3 - &gt; 3<br>输出:1 - &gt; 2 - &gt; 3</p>
-</blockquote>
-<hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题思路很简单，由于链表是有序的，说明如果有重复的，肯定是下一个，按照顺序进行遍历，如果遇到当前节点和后一个节点相同，那么覆盖当前节点。遍历一次就搞定了</p>
-<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
-<li><p>按照我们的思路来编辑，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public ListNode deleteDuplicates(ListNode head) &#123;</span><br><span class="line"></span><br><span class="line">    if (head == null) &#123;</span><br><span class="line">        return head;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ListNode temp = head;</span><br><span class="line">    while (head.next != null) &#123;</span><br><span class="line">        if (head.val == head.next.val) &#123;</span><br><span class="line">            head.next = head.next.next;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    return temp;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ListNode &#123;</span><br><span class="line">    int val;</span><br><span class="line">    ListNode next;</span><br><span class="line"></span><br><span class="line">    ListNode(int x) &#123;</span><br><span class="line">        val = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环m所以f(n)=(n)=n;所以O(f(n))=O(n),即T(n)=O(n)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案使用了没有使用额外空间，所以空间复杂度是O(n)=O(1);</p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉,本题大致只有一种解题方式，直接遍历读取覆盖即可，我是通过当前节点和下一个节点进行比较，也可以和前一个节点进行比较 。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/ClimbingStairs解题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FightCrap">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FightCrap's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/07/ClimbingStairs解题/" itemprop="url">LeetCode集锦（十八） - 第70题 Climbing Stairs</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:50:01+08:00">
-                2019-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/07/ClimbingStairs解题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/ClimbingStairs解题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">You are climbing a stair case. It takes n steps to reach to the top. </span><br><span class="line"></span><br><span class="line"> Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top? </span><br><span class="line"></span><br><span class="line"> Note: Given n will be a positive integer. </span><br><span class="line"></span><br><span class="line"> Example 1: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: 2</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: There are two ways to climb to the top.</span><br><span class="line">1. 1 step + 1 step</span><br><span class="line">2. 2 steps</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Example 2: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: 3</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: There are three ways to climb to the top.</span><br><span class="line">1. 1 step + 1 step + 1 step</span><br><span class="line">2. 1 step + 2 steps</span><br><span class="line">3. 2 steps + 1 step</span><br></pre></td></tr></table></figure>
-
-<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
-<p>你正在爬楼梯。到达山顶需要n步。<br>每次你可以爬1或2级台阶。你可以用几种不同的方式爬到山顶?<br>注意:给定n是一个正整数。<br>示例1:<br>输入:2<br>输出:2<br>说明:爬到山顶有两种方法。</p>
-<ol>
-<li>1步+ 1步</li>
-<li>2步<br>示例2:<br>输入:3<br>输出:3<br>说明:爬到山顶有三种方法。</li>
-<li>1步+ 1步+ 1步</li>
-<li>1步+ 2步</li>
-<li>2步+ 1步</li>
-</ol>
-</blockquote>
-<hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题要求很明确，就是根据目标阶梯，预测一下需要多少中1，2组合方式走完整个阶梯，粗看貌似很麻烦，用循环来弄不知道有多少情况，各种if，但是换个角度来看，如果我们倒着推理，比如最后一级只可能是1步上来或者是2步上来，这样子逆退，就找出来一种递归的方式，但是这种方法比较耗时间，没有通过，不知道对不对，所以换一种方式，我们试试正向思维，3级是2步和一步跨上去的，那是不是2+1？同样4级，也是由两步和一步跨上去的，也就是n(4)=n(2)+n(3),哎呦，好像斐波那契数列哦。类似的推理，其实我们可以猜测出规律n(n)=n(n-1)+n(n-1).所以本题就解决了</p>
-<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
-<li><p>按照我们的思路来编辑，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">if (n &lt; 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    if (n &lt;= 2) &#123;</span><br><span class="line">        return n;</span><br><span class="line">    &#125;</span><br><span class="line">    int a = 1;</span><br><span class="line">    int b = 2;</span><br><span class="line">    int result = 0;</span><br><span class="line">    for (int i = 3; i &lt;= n; i++) &#123;</span><br><span class="line">        result = a + b;</span><br><span class="line">        a = b;</span><br><span class="line">        b = result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return result;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环m所以f(n)=(n)=n;所以O(f(n))=O(n),即T(n)=O(n)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案使用了没有使用额外空间，所以空间复杂度是O(n)=O(1);</p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉, 可以通过逆推来发现特定的规律，直接想可能是个很大的问题，所以可以考虑换个思维。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2113,7 +2120,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
