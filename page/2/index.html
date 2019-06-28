@@ -254,6 +254,1123 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/12/ConvertSortedArrayToBinarySearchTree解题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FightCrap">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FightCrap's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/12/ConvertSortedArrayToBinarySearchTree解题/" itemprop="url">LeetCode 集锦（二十五） - 第 108 题 Convert Sorted Array To Binary Search Tree</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-12T14:15:01+08:00">
+                2019-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/12/ConvertSortedArrayToBinarySearchTree解题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/12/ConvertSortedArrayToBinarySearchTree解题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Given an array where elements are sorted in ascending order, convert it to a height balanced BST.</span><br><span class="line"></span><br><span class="line"> For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.</span><br><span class="line"></span><br><span class="line"> Example:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Given the sorted array: [-10,-3,0,5,9],</span><br><span class="line"></span><br><span class="line">One possible answer is: [0,-3,9,-10,null,5], which represents the following height balanced BST:</span><br><span class="line"></span><br><span class="line">      0</span><br><span class="line">     / \</span><br><span class="line">   -3   9</span><br><span class="line">   /   /</span><br><span class="line"> -10  5</span><br></pre></td></tr></table></figure>
+
+<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
+<p>给定一个按升序排列元素的数组，将其转换为高度平衡的BST。<br>对于该问题，高度平衡二叉树定义为每个节点的两个子树深度相差不超过1的二叉树。<br>例子:<br>给定排序后的数组:[-10，-3,0,5,9]，<br>一个可能的答案是:[0，-3,9，-10,null,5]，表示高度平衡BST:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;      0</span><br><span class="line">&gt;     / \</span><br><span class="line">&gt;   -3   9</span><br><span class="line">&gt;   /   /</span><br><span class="line">&gt; -10  5</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题是相对而言比较复杂，需要一个高度平衡的二叉树，但是这边参数很特定，是一个排序的数组，排序的数组，变成高度平衡的二叉树，那不是只要对半折开就好了嘛，那不就是一颗树了嘛？</p>
+<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
+<li><p>按照分治法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public TreeNode sortedArrayToBST(int[] nums) &#123;</span><br><span class="line">     if (nums.length &lt;= 0) &#123;</span><br><span class="line">         return null;</span><br><span class="line">     &#125;</span><br><span class="line">     return sortedArrayToBST(nums, 0, nums.length - 1);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> private TreeNode sortedArrayToBST(int[] nums, int left, int right) &#123;</span><br><span class="line">     if (left &gt; right) &#123;</span><br><span class="line">         return null;</span><br><span class="line">     &#125;</span><br><span class="line">     if (left == right) &#123;</span><br><span class="line">         return new TreeNode(nums[left]);</span><br><span class="line">     &#125;</span><br><span class="line">     int mid = (left + right+1) / 2;</span><br><span class="line">     TreeNode leftNode = sortedArrayToBST(nums, left, mid - 1);</span><br><span class="line">     TreeNode rightNode = sortedArrayToBST(nums, mid + 1, right);</span><br><span class="line">     TreeNode treeNode = new TreeNode(nums[mid]);</span><br><span class="line">     treeNode.left = leftNode;</span><br><span class="line">     treeNode.right = rightNode;</span><br><span class="line">     return treeNode;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>时间复杂度</strong>:
+该方案用了二分法的方式，所以为O(n)=O(nlogn)</p>
+<p><strong>空间复杂度</strong>:
+该方案没有使用额外的空间，所以空间复杂度O(n)=O(1)</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，根据二分法的方式，来解决对半拆分的情况。其实这边应该是有规律的，比如应该是和中间节点是有倍数关系的，但是具体我也没有去验证。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/12/BalancedBinaryTree解题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FightCrap">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FightCrap's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/12/BalancedBinaryTree解题/" itemprop="url">LeetCode 集锦（二十六） - 第 110 题 Balanced Binary Tree</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-12T14:14:17+08:00">
+                2019-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/12/BalancedBinaryTree解题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/12/BalancedBinaryTree解题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Given a binary tree, determine if it is height-balanced. </span><br><span class="line"></span><br><span class="line"> For this problem, a height-balanced binary tree is defined as: </span><br><span class="line"></span><br><span class="line"> a binary tree in which the depth of the two subtrees of every node never differ by more than 1. </span><br><span class="line"></span><br><span class="line"> Example 1: </span><br><span class="line"></span><br><span class="line"> Given the following tree [3,9,20,null,null,15,7]: </span><br><span class="line"></span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7 </span><br><span class="line"></span><br><span class="line"> Return true. </span><br><span class="line">Example 2: </span><br><span class="line"> Given the following tree [1,2,2,3,3,null,null,4,4]: </span><br><span class="line"></span><br><span class="line">       1</span><br><span class="line">      / \</span><br><span class="line">     2   2</span><br><span class="line">    / \</span><br><span class="line">   3   3</span><br><span class="line">  / \</span><br><span class="line"> 4   4</span><br><span class="line"></span><br><span class="line"> Return false.</span><br></pre></td></tr></table></figure>
+
+<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
+<p>给定一个二叉树，判断它是否高度平衡。<br>对于该问题，定义高度平衡二叉树为:<br>一种二叉树，其中每个节点的两个子树的深度相差不超过1。<br>示例1:<br>给定如下树[3,9,20,null,null,15,7]:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;    3</span><br><span class="line">&gt;   / \</span><br><span class="line">&gt;  9  20</span><br><span class="line">&gt;    /  \</span><br><span class="line">&gt;   15   7 </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>返回 true<br>示例2:<br>给定如下树[1,2,2,3,3,null,null,4,4]:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;       1</span><br><span class="line">&gt;      / \</span><br><span class="line">&gt;     2   2</span><br><span class="line">&gt;    / \</span><br><span class="line">&gt;   3   3</span><br><span class="line">&gt;  / \</span><br><span class="line">&gt; 4   4</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>返回 false</p>
+</blockquote>
+<hr>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题是相对而言比较简单，判断一棵树是不是平衡二叉树。平衡二叉树的限制条件就是一个树的每个节点的左右子节点的深度相差不能超过1。按照这个思路，其实可以递归遍历出每个树节点的深度，判断左右节点是否差过1，就ok了</p>
+<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
+<li><p>按照分治法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public boolean isBalanced(TreeNode root) &#123;</span><br><span class="line">     if (root == null) &#123;</span><br><span class="line">         return true;</span><br><span class="line">     &#125;</span><br><span class="line">     return deap(root) != -1;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> private int deap(TreeNode root) &#123;</span><br><span class="line">     if (root == null) &#123;</span><br><span class="line">         return 0;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     int left = deap(root.left) + 1;</span><br><span class="line"></span><br><span class="line">     int right = deap(root.right) + 1;</span><br><span class="line">     if (left == 0 || right == 0) &#123;</span><br><span class="line">         return -1;</span><br><span class="line">     &#125;</span><br><span class="line">     if (Math.abs(left - right) &gt; 1) &#123;</span><br><span class="line">         return -1;</span><br><span class="line">     &#125;</span><br><span class="line">     return Math.max(left, right);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>时间复杂度</strong>:
+该方案用了遍历的方式，所以为O(n)=O(n)</p>
+<p><strong>空间复杂度</strong>:
+该方案没有使用额外的空间，所以空间复杂度O(n)=O(1)</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，通过遍历的方式，来获取左右节点的高度，判断是否相差1，其实这边还可以优化，那就是获取高度的时候是不是0，如果不符合了就不需要在走下面的方式了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/11/java基础-一-面向对象思想/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FightCrap">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FightCrap's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/11/java基础-一-面向对象思想/" itemprop="url">java基础(一)-面向对象思想</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-11T09:09:42+08:00">
+                2019-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/11/java基础-一-面向对象思想/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/11/java基础-一-面向对象思想/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>java是一门面向对象的语言，在学习java前，先要理解面向对象这个概念，区别于c这类的面向过程语言，面向对象有着什么一样的特点呢？先上一张思维导图吧：<br><img src="https://raw.githubusercontent.com/fightcrap/javaStudy/master/image/java/base/46AC7A10-A89C-42E9-BEAA-2D13BDD02A91.png" alt="面向对象思维导图"></p>
+<hr>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><h4 id="什么是对象"><a href="#什么是对象" class="headerlink" title="什么是对象"></a>什么是对象</h4><blockquote>
+<p>问题空间中的元素及其在解空间中的表示</p>
+</blockquote>
+<p>这句话摘抄自<em>java编程思想</em>，是一句很难理解的话语（果然大佬的总结概括不是一般的抽象）。那么什么是问题空间？什么是在解空间呢？</p>
+<ol>
+<li><p>问题空间：问题空间是问题解决者对一个问题所达到的全部认识状态，它是由问题解决者利用问题所包含的信息和已贮存的信息主动地构成的。一般来说包括3部分：</p>
+<ul>
+<li>初始状态 – 开始时的不完全的信息或令人不满意的状况，</li>
+<li>目标状态 – 你希望获得的信息或状态或者说是目标状态</li>
+<li>操作  –为了从初始状态迈向目标状态，你可能采取的步骤</li>
+</ul>
+<p>如果拿方法来类比这段内容，初始状态也就是入参，目标状态是结果或者返回值，操作就是方法体啦。</p>
+</li>
+<li><p>在解空间：emmmm这个没有找到具体的解释，不过有解空间的解释，应该类似：n元齐次线性方程组的解集S={x|Ax=0}是一个向量空间，称为齐次线性方程组的解空间。相当于问题的结果集。<br>大致概念解释完成了，貌似还是不好理解，用个人的话来讲：问题空间其实就是我们的问题，这个问题有什么条件，运算的过程，和问题解决后的状态。问题空间的元素都可以是一个对象。对象可以是一个有着独立特性的实体。解空间就是结果集了。问题的结果也是一个对象。<strong>简单的说，对象其实就是一个可描述的实体，一个可描述的实体都可以是对象</strong></p>
+</li>
+</ol>
+<h4 id="对象的五个基本特性"><a href="#对象的五个基本特性" class="headerlink" title="对象的五个基本特性"></a>对象的五个基本特性</h4><ul>
+<li>万物皆对象（也就是所以可以描述的实体都可以是一个对象）</li>
+<li>程序是对象的集合，它们通过发送消息的方式告知彼此要做的事情（发送消息其实就是方法的调用，或者通知）</li>
+<li>每个对象都有着自己的以及其他对象所构成的存储（对象的构成可以是其他的对象组合，或者自己本身的一下特性组合而成）</li>
+<li>每个对象都有着其类型：对象都有着自己的归属标示，比如它是属于那一类的对象，是人还是其他的可描述的类别。每一个对象都是其归属标示的一个实例</li>
+<li>某一特定类型的所有对象都可以接收相同的信息（也就是它们对外开发的通信方式都是一致的）</li>
+</ul>
+<p>以上就是对象的全部概念了，解释完了对象，那就要解释下对象的归属标示了，在java中这个称之为类</p>
+<h4 id="什么是类"><a href="#什么是类" class="headerlink" title="什么是类"></a>什么是类</h4><p>在上文有提到过每个对象都拥有其类型，这个类型在java中称之为类，类是具有相同特性（数据元素和行为）的对象集合</p>
+<ul>
+<li>数据元素：我们一般当成特征，即该对象中有着那些属性来描述，比如长方形的长和宽。</li>
+<li>行为：是方法的总称，如果我们把对象比作个体，那么方法就是个体可以做的事情，拥有的行为</li>
+</ul>
+<hr>
+<p>上文解释了对象的概念，但是我们主要还是讲解一下面向对象，所有来解释下面向对象的内容吧。</p>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><h4 id="什么是面向对象"><a href="#什么是面向对象" class="headerlink" title="什么是面向对象"></a>什么是面向对象</h4><p>面向对象思想可以看作一种在程序中包含各种独立而又互相调用的对象的思想。<br>与面向过程的做法不同，面向过程我们可以理解为流水线似操作，类似与我们现在机器化操作，对应特定过程，制定特定的方法。而面向对象就不同了，面向对象是基于对象，也就是说由对象的相互交流，协作来完成问题的解决，相当于我们的工人们做一些活，他们有着自己的技能，可以适用与不同的场景，交互配合实现。<br><img src="https://raw.githubusercontent.com/fightcrap/javaStudy/master/image/java/base/oop.jpg" alt="面向对象和面向过程区别"><br>第一眼看貌似都是一样，无非就是面向对象多了一个维修工多概念，没错，维修工其实就是一个对象，面向对象把流程的实现都封装到了对象中，由对象的行为或者属性来处理问题。维修工是一个归类，不同的维修工是其具体表现。对于场景，流程是不会变的，更多是变化细节，在面向过程中，没错改动就是修改流程，而面向对象则是修改其行为，似的该对象的行为能适配流程。具有很强的灵活性和可维护性</p>
+<h4 id="面向对象的三大特征"><a href="#面向对象的三大特征" class="headerlink" title="面向对象的三大特征"></a>面向对象的三大特征</h4><ul>
+<li>封装<br>隐藏一切可隐藏的细节，只暴露最简单的行为。也就是说<strong>通信方不需要知道被通信方的实现，只需要知道如何通信即可，也就是被通信方的实现对通信方而言是透明对</strong><br>在java中，我们一般只会暴露类的api，而不会告知是如何实现的，对于调用方而言，实现细节都是透明的。</li>
+<li>继承<br>继承指的是一种能力，<strong>是由当前类派生出新类的过程</strong>，可以在现有类的基础上构建新的类。<br>在java中：由继承创建的新类我们统称为子类/派生类；而被继承的类称为父类/基类。Object是所有的父类。还有一点java中，是单继承模式的。</li>
+<li>多态<br>是同一种行为具有不同表现活形态的能力，是对象的多种表现能力的体现。<br>多态基础是继承，允许子对象赋予父对象不同的能力。<br>形成多态的条件有：<ol>
+<li>继承基类</li>
+<li>重写</li>
+<li>父类引用指向子类对象<br>在java中与多态有关系的是重写：由子类重新定义父类的行为，也就是条件2。而重载却不是，重载是类内部多个相同行为，不同参数的一个多样化。和多态没有关系。</li>
+</ol>
+</li>
+</ul>
+<h4 id="面向对象的5大原则"><a href="#面向对象的5大原则" class="headerlink" title="面向对象的5大原则"></a>面向对象的5大原则</h4><p>S.O.L.I.D简称面向对象的5大原则，分别是：单一原则，开放封闭原则，里氏替换原则，接口隔离原则，依赖倒置原则。虽然大多数我们在编写程序的时候是不太会记得这些原则，这些原则也不应该使用在编写程序上，而是在设计程序上面。准确来说，这是一个基本的优化原则。</p>
+<ul>
+<li>单一原则<blockquote>
+<p>指某一个类的功能，职责要单一，不能包罗万象。</p>
+</blockquote>
+</li>
+</ul>
+<p>也就是对于类要足够的细化，对行为足够的明确，隔离不必要的行为。</p>
+<ul>
+<li><p>开放封闭原则</p>
+<blockquote>
+<p>一个模块在扩展性方面应该是开放的，而在更改性上面应该是封闭的。</p>
+</blockquote>
+<p>这个其实很好理解，比如我们在一个模块中需要新增一个功能（不是扩展性的），而这个新功能和其中一个功能有很大一部分相似，一般情况下，我们修改下原接口，多个特判形式的编写，其实就可以解决问题，但是这样子做不符合开放封闭原则。我们不应该在更改上面是开放的，改动之前的逻辑，而是应该新开一个接口，扩展功能，并把两部分相同的地方抽象出来。</p>
+</li>
+<li><p>里氏替换原则</p>
+<blockquote>
+<p>子类可以出现在父类能够出现的任何地方，并代替它</p>
+</blockquote>
+<p>这句话就是父类能使用的地方，子类也都可以代替它。</p>
+</li>
+<li><p>依赖倒置原则</p>
+<blockquote>
+<p>实体必须依赖抽象而不是具体实现</p>
+</blockquote>
+</li>
+</ul>
+<p>这个就不太好理解了,换个方式说:</p>
+<ol>
+<li>高层次的模块不应该依赖低层次的实现</li>
+<li>高层次的模块应该依赖抽象<br>emmm更加不好理解了，最简单的来说，就是程序应该依赖抽象接口，而不是依赖具体的实现。拿很简单的例子而言，我们在代码中声明对象的时候，是否都是XXX x=new XXX(),其实这种就是依赖了具体的实现，因为后面指待的就是特定的XXX类，那么应该怎么样的？这边就要借助设计模式中的抽象工厂模式（注意是抽象哦，因为不依赖具体的实现），利用工厂模式来代替直接声明，这样子做有个很大好处，一旦某一天XXX类要被替换了，那安装之前的方式，我们是不是要该全部XXX类所在的地方？这样子很容易出现遗漏。而利用了抽象工厂模式，我们其实只要该该工厂模式内部的实现一个地方就好了，如果要替换工厂模式，也直接替换工厂模式的实现就好了（所以为嘛是抽象工厂模式了），这样程序就有很好的扩展性和灵活性。</li>
+</ol>
+<ul>
+<li><p>接口隔离原则</p>
+<blockquote>
+<p>拆分非常庞大臃肿的接口成为更小和更具体的接口</p>
+</blockquote>
+<p>个人理解上呢，这个相当于是接口的单一原则，也就是接口的职责要足够细化，功能单一，这样子使用方就不需要依赖它实现不使用的方法了</p>
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>大致内容就这样子描述完了，这章基本描述了对象，面向对象思想里面的部分内容，讲了大概的概念，全是文字，好枯燥的呦。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/10/BinaryTreeLevelOrderTraversal解题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FightCrap">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FightCrap's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/10/BinaryTreeLevelOrderTraversal解题/" itemprop="url">LeetCode 集锦（二十四） - 第 107 题 Binary Tree Level Order Traversal</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-10T10:37:28+08:00">
+                2019-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/10/BinaryTreeLevelOrderTraversal解题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/10/BinaryTreeLevelOrderTraversal解题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Given a binary tree, return the bottom-up level order traversal of its nodes&apos; values. (ie, from left to right, level by level from leaf to root). </span><br><span class="line">For example: </span><br><span class="line">Given binary tree [3,9,20,null,null,15,7], </span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7</span><br><span class="line"></span><br><span class="line">return its bottom-up level order traversal as: </span><br><span class="line">[</span><br><span class="line">  [15,7],</span><br><span class="line">  [9,20],</span><br><span class="line">  [3]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
+<p>给定一个二叉树，返回其节点值的自底向上顺序遍历。(即从左到右，从叶到根，一层一层地)。</p>
+</blockquote>
+<blockquote>
+<p>例如:<br>给定二叉树[3,9,20,null,null,15,7]，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;   3</span><br><span class="line">&gt;  / \</span><br><span class="line">&gt; 9  20</span><br><span class="line">&gt;   /  \</span><br><span class="line">&gt;  15   7 </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>返回自底向上的顺序遍历，如下:<br>[<br> [15,7],<br> [9,20],<br> [3]<br>]</p>
+</blockquote>
+<hr>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题是倒叙输出一棵树的层次，哎呦，不就是层级遍历嘛，上一篇刚刚写过，至于倒序，那就是小问题了。咱们用linkedArrayList代替队列（虽然是由这个实现的，但是没有用到队列的特点。所以直接用了list，这边使用替换，代替了上次操作的remove，相对来说，效率会好一点</p>
+<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
+<li><p>按照层级遍历的方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;List&lt;Integer&gt;&gt; levelOrderBottom(TreeNode root) &#123;</span><br><span class="line">     if (root == null) &#123;</span><br><span class="line">         return new ArrayList&lt;&gt;();</span><br><span class="line">     &#125;</span><br><span class="line">     List&lt;List&lt;Integer&gt;&gt; lists = new LinkedList&lt;&gt;();</span><br><span class="line">     List&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();</span><br><span class="line">     List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">     list.add(root.val);</span><br><span class="line">     lists.add(list);</span><br><span class="line">     putNode(root, queue);</span><br><span class="line">     while (queue.size() &gt; 0) &#123;</span><br><span class="line">         List&lt;Integer&gt; resultTmep = new ArrayList&lt;&gt;();</span><br><span class="line">         List&lt;TreeNode&gt; temp = new LinkedList&lt;&gt;();</span><br><span class="line">         for (TreeNode treeNode : queue) &#123;</span><br><span class="line">             resultTmep.add(treeNode.val);</span><br><span class="line">             putNode(treeNode, temp);</span><br><span class="line">         &#125;</span><br><span class="line">         queue = temp;</span><br><span class="line">         lists.add(0,resultTmep);</span><br><span class="line">     &#125;</span><br><span class="line">     return lists;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> private void putNode(TreeNode treeNode, List&lt;TreeNode&gt; list) &#123;</span><br><span class="line"></span><br><span class="line">     if (treeNode == null) &#123;</span><br><span class="line">         return;</span><br><span class="line">     &#125;</span><br><span class="line">     if (treeNode.left != null) &#123;</span><br><span class="line">         list.add(treeNode.left);</span><br><span class="line">     &#125;</span><br><span class="line">     if (treeNode.right != null) &#123;</span><br><span class="line">         list.add(treeNode.right);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>时间复杂度</strong>:
+该方案用了层级遍历的方式，时间复杂度相当于每一个的遍历，所以为O(n)=O(n)</p>
+<p><strong>空间复杂度</strong>:
+该方案使用了额外的空间，使用了数组暂存树，相当于把树转化为了数组，所以空间复杂度O(n)=O(n)</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，相对于空间开销是差不多，效率提升不少，果然remove还是有点麻烦的。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/09/MaximumDeepthOfBinaryTree解题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FightCrap">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FightCrap's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/09/MaximumDeepthOfBinaryTree解题/" itemprop="url">LeetCode 集锦（二十三） - 第 104 题 Maximum Depth of  Binary Tree</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-09T14:57:00+08:00">
+                2019-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/09/MaximumDeepthOfBinaryTree解题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/09/MaximumDeepthOfBinaryTree解题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Given a binary tree, find its maximum depth. </span><br><span class="line"></span><br><span class="line"> The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node. </span><br><span class="line"></span><br><span class="line"> Note: A leaf is a node with no children. </span><br><span class="line"></span><br><span class="line"> Example: </span><br><span class="line"></span><br><span class="line"> Given binary tree [3,9,20,null,null,15,7], </span><br><span class="line"></span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7 </span><br><span class="line"></span><br><span class="line"> return its depth = 3.</span><br></pre></td></tr></table></figure>
+
+<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
+<p>给定一个二叉树，求它的最大深度。<br>最大深度是从根节点到最远叶节点的最长路径上的节点数。<br>注意:叶子是没有子节点的节点。<br>例子:<br>给定二叉树[3,9,20,null,null,15,7]，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;   3</span><br><span class="line">&gt;  / \</span><br><span class="line">&gt; 9  20</span><br><span class="line">&gt;   /  \</span><br><span class="line">&gt;  15   7 </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p> 返回结果是3</p>
+</blockquote>
+<hr>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题是获取一棵树的深度，一般设计到树到题还是有点麻烦到，第一步想到算深度？是否可以按层级遍历，不就知道有多少层了嘛。这是一种方式，但是换一个角度想，一棵树的深度，不就是由它的左右节点决定的嘛，如果有左右节点就加一，同理，左右节点的深度又是由它们的子左右节点决定的，选择大的那个深度值，貌似就可以解决此题了</p>
+<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
+<li><p>按照层级遍历的方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">public int maxDepth(TreeNode root) &#123;</span><br><span class="line"></span><br><span class="line">    if (root == null) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    int result = 1;</span><br><span class="line">    //定义一个队列</span><br><span class="line">    List&lt;TreeNode&gt; list = new LinkedList&lt;&gt;();</span><br><span class="line">    putNode(root, list);</span><br><span class="line">    while (list.size() &gt; 0) &#123;</span><br><span class="line">        //通过遍历的方式把队列里面的数据获取，并把左右子节点塞入</span><br><span class="line">        int size = list.size();</span><br><span class="line">        while (--size &gt;= 0) &#123;</span><br><span class="line">            TreeNode treeNode = list.get(size);</span><br><span class="line">            putNode(treeNode, list);</span><br><span class="line">            list.remove(size);</span><br><span class="line">        &#125;</span><br><span class="line">        result++;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void putNode(TreeNode treeNode, List&lt;TreeNode&gt; list) &#123;</span><br><span class="line"></span><br><span class="line">    if (treeNode == null) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    if (treeNode.left != null) &#123;</span><br><span class="line">        list.add(treeNode.left);</span><br><span class="line">    &#125;</span><br><span class="line">    if (treeNode.right != null) &#123;</span><br><span class="line">        list.add(treeNode.right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class TreeNode &#123;</span><br><span class="line">   int val;</span><br><span class="line">   TreeNode left;</span><br><span class="line">   TreeNode right;</span><br><span class="line"></span><br><span class="line">   TreeNode(int x) &#123;</span><br><span class="line">       val = x;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>时间复杂度</strong>:
+该方案用了层级遍历的方式，时间复杂度相当于每一个的遍历，所以为O(n)=O(n)</p>
+<p><strong>空间复杂度</strong>:
+该方案使用了额外的空间，使用了数组暂存树，相当于把树转化为了数组，所以空间复杂度O(n)=O(n)</p>
+</li>
+<li><p>递归分治法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public int maxDepth(TreeNode root) &#123;</span><br><span class="line">    if (root == null) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    return Math.max(maxDepth(root.left) + 1, maxDepth(root.right) + 1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class TreeNode &#123;</span><br><span class="line">    int val;</span><br><span class="line">    TreeNode left;</span><br><span class="line">    TreeNode right;</span><br><span class="line"></span><br><span class="line">    TreeNode(int x) &#123;</span><br><span class="line">        val = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>时间复杂度</strong>:
+该方案用了递归遍历的方式，时间复杂度相当于每一个的遍历，所以为O(n)=O(n)</p>
+<p><strong>空间复杂度</strong>:
+该方案没有使用额外的空间，所以空间复杂度O(n)=O(1)</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，按层级遍历其实效果不怎么理想，个人估计是remove的操作导致的，如果可以不删除，直接数组代替树，效果可能会好一点。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/08/SymmetricTree解题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FightCrap">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FightCrap's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/08/SymmetricTree解题/" itemprop="url">LeetCode 集锦（二十二） - 第 101 题 Symmetric Tree</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-08T14:27:38+08:00">
+                2019-06-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/08/SymmetricTree解题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/08/SymmetricTree解题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).</span><br><span class="line"></span><br><span class="line"> For example, this binary tree [1,2,2,3,4,4,3] is symmetric:</span><br><span class="line"></span><br><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  2   2</span><br><span class="line"> / \ / \</span><br><span class="line">3  4 4  3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> But the following [1,2,2,null,3,null,3] is not:</span><br><span class="line"></span><br><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  2   2</span><br><span class="line">   \   \</span><br><span class="line">   3    3</span><br><span class="line"></span><br><span class="line"> Note:</span><br><span class="line">Bonus points if you could solve it both recursively and iteratively.</span><br></pre></td></tr></table></figure>
+
+<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
+<p>给定一个二叉树，检查它是否是自身的镜像(即围绕其中心对称)。<br>例如，这个二叉树[1,2,2,3,4,4,3]是对称的:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;     1</span><br><span class="line">&gt;    / \</span><br><span class="line">&gt;   2   2</span><br><span class="line">&gt;  / \ / \</span><br><span class="line">&gt; 3  4 4  3</span><br><span class="line">&gt;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>但是下面的[1,2,2,null,3,null,3]不是:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;    1</span><br><span class="line">&gt;   / \</span><br><span class="line">&gt;  2   2</span><br><span class="line">&gt;   \   \</span><br><span class="line">&gt;   3    3</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>注意:<br>如果你能递归地和迭代地解出它，那就更好了。</p>
+</blockquote>
+<hr>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题判断两个树是否镜像树，镜像树的特点，在于它的左节点和右节点是一样的，根据这个特点我们可以解决这个问题。</p>
+<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
+<li><p>按照思路代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> public boolean isSymmetric(TreeNode root) &#123;</span><br><span class="line">     if (root == null) &#123;</span><br><span class="line">         return true;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     return isSymmetric(root.left, root.right);</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> public boolean isSymmetric(TreeNode left, TreeNode right) &#123;</span><br><span class="line"></span><br><span class="line">     if (left == null &amp;&amp; right == null) &#123;</span><br><span class="line">         return true;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     boolean isSame = left == null;</span><br><span class="line">     isSame = isSame ? false : right != null &amp;&amp; left.val == right.val;</span><br><span class="line"></span><br><span class="line">     return isSame &amp;&amp; isSymmetric(left.left, right.right) &amp;&amp; isSymmetric(left.right, right.left);</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">class TreeNode &#123;</span><br><span class="line">    int val;</span><br><span class="line">    TreeNode left;</span><br><span class="line">    TreeNode right;</span><br><span class="line"></span><br><span class="line">    TreeNode(int x) &#123;</span><br><span class="line">        val = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>时间复杂度</strong>:
+该方案用了递归遍历树，不要判断时间复杂度，而且树的遍历复杂度都说不好，且记为 O(n)</p>
+<p><strong>空间复杂度</strong>:
+该方案使用了没有使用额外空间，所以空间复杂度是 O(n)=O(1);</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，按照特点我们可以很简单的解决这个问题，其实也可以按层进行对比，判断每一层是否镜像，可以用队列来解决。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/SameTree解题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -944,1044 +2061,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/Sqrt(X)解题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FightCrap">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FightCrap's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/07/Sqrt(X)解题/" itemprop="url">LeetCode集锦（十七） - 第69题 Sqrt(X)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:49:32+08:00">
-                2019-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/07/Sqrt(X)解题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/Sqrt(X)解题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Implement int sqrt(int x). </span><br><span class="line"></span><br><span class="line"> Compute and return the square root of x, where x is guaranteed to be a non-negative integer. </span><br><span class="line"></span><br><span class="line"> Since the return type is an integer, the decimal digits are truncated and only the integer part of the result is returned. </span><br><span class="line"></span><br><span class="line"> Example 1: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: 4</span><br><span class="line">Output: 2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Example 2: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: 8</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: The square root of 8 is 2.82842..., and since </span><br><span class="line">             the decimal part is truncated, 2 is returned.</span><br></pre></td></tr></table></figure>
-
-<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
-<p>实现int sqrt(int x)。<br>计算并返回x的平方根，其中x保证是一个非负整数。<br>由于返回类型是整数，因此将截断小数，只返回结果的整数部分。<br>示例1:<br>输入:4<br>输出:2<br>示例2:<br>输入:8<br>输出:2<br>说明:8的平方根是2.82842…,自<br>小数部分被截断，返回2。</p>
-</blockquote>
-<hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题是找一个数是当前数的平方根，如果是小数，则返回舍弃小数的值。我们可以用遍历的方式，来判断是不是，当时这边需要考虑一下越界的问题，其实也可以不关注，毕竟可以得出越界的上限的平方根是多少，就可以避免这个问题。除了遍历，我们也可以用java自带的Math类来解决，是最简单的。除此之外，本题是找值，而且是在特定范围内找一个值，就可以想到是否可以用二分法来简短查询时间。</p>
-<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
-<li><p>按照我们的思路来编辑，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">if (x &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for (int i =x/2+1; i&gt;=0; i=i/2) &#123;</span><br><span class="line">        long result = 1L*i * i;</span><br><span class="line">        if (result == x) &#123;</span><br><span class="line">            return i;</span><br><span class="line">        &#125;</span><br><span class="line">        if (result &gt; x) &#123;</span><br><span class="line">            return i - 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环m所以f(n)=(n/2)=n;所以O(f(n))=O(n/2),即T(n)=O(n)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案使用了没有使用额外空间，所以空间复杂度是O(n)=O(1);</p>
-</li>
-<li><p>使用二分法，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">if (x &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    int start = 0;</span><br><span class="line">    int end = x;</span><br><span class="line">    while (start &lt;= end) &#123;</span><br><span class="line">        int index = (start + end) / 2;</span><br><span class="line">        long sum = 1L * index * index;</span><br><span class="line">        if (sum &gt; x) &#123;</span><br><span class="line">            end = index - 1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            start = index + 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return end;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环m所以f(n)=(logn)=n;所以O(f(n))=O(logn),即T(n)=O(logn)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案使用了没有使用额外空间，所以空间复杂度是O(n)=O(1);</p>
-</li>
-<li><p>借用Math类，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (x &lt;= 0) &#123;</span><br><span class="line">       return 0;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   return (int)Math.sqrt(x);</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环m所以f(n)=(1)=n;所以O(f(n))=O(1),即T(n)=O(1)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案使用了没有使用额外空间，所以空间复杂度是O(n)=O(1);</p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉, 在特地范围内，而且还是有序的，我们自然可以想到二分法来简化遍历，由于这题是需要最近的最小值，所以当end–后，大的值就变成来最小值，刚刚好满足。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/AddBinary解题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FightCrap">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FightCrap's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/07/AddBinary解题/" itemprop="url">LeetCode集锦（十六） - 第67题 Add Binary</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:49:07+08:00">
-                2019-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/07/AddBinary解题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/AddBinary解题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Given two binary strings, return their sum (also a binary string). </span><br><span class="line"></span><br><span class="line"> The input strings are both non-empty and contains only characters 1 or 0. </span><br><span class="line"></span><br><span class="line"> Example 1: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: a = &quot;11&quot;, b = &quot;1&quot;</span><br><span class="line">Output: &quot;100&quot; </span><br><span class="line"></span><br><span class="line"> Example 2: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: a = &quot;1010&quot;, b = &quot;1011&quot;</span><br><span class="line">Output: &quot;10101&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
-<p>给定两个二进制字符串，返回它们的和(也是一个二进制字符串)。<br>输入字符串都是非空的，并且只包含字符1或0。<br>示例1:<br>输入:a = “11”， b = “1”<br>输出:“100”<br>示例2:<br>输入:a = “1010”， b = “1011”<br>输出:“10101”</p>
-</blockquote>
-<hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题是用字符串模拟2精制的加法，就按照逢2进1的方式遍历一遍，如果长度不同，则在把长的覆盖上去。</p>
-<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
-<li><p>按照我们的思路来编辑，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">if (a == null || b == null) &#123;</span><br><span class="line">        return a == null ? b : a;</span><br><span class="line">    &#125;</span><br><span class="line">    StringBuilder stringBuilder = new StringBuilder();</span><br><span class="line">    int lenA = a.length() - 1;</span><br><span class="line">    int lenB = b.length() - 1;</span><br><span class="line">    int add = 0;</span><br><span class="line">    while (lenA &gt;= 0 || lenB &gt;= 0 || add &gt; 0) &#123;</span><br><span class="line">        int result = (lenA &gt;= 0 ? a.charAt(lenA) - &apos;0&apos; : 0) + (lenB &gt;= 0 ? b.charAt(lenB) - &apos;0&apos; : 0) + add;</span><br><span class="line">        add = result / 2;</span><br><span class="line">        stringBuilder.append(result % 2);</span><br><span class="line">        lenA--;</span><br><span class="line">        lenB--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return stringBuilder.reverse().toString();</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环m所以f(n)=(n)=n;所以O(f(n))=O(n),即T(n)=O(n)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案使用了没有使用额外空间，所以空间复杂度是O(n)=O(1);</p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉, 之前用StringBuilder的insert方法，发现速度很慢，看了下源码后，它都会移动数组，也就是正常的数组扩容拷贝，所以特别慢，再次就直接用append，然后反转一下，比之前方式要快很多。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/PlusOne解题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FightCrap">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FightCrap's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/07/PlusOne解题/" itemprop="url">LeetCode集锦（十五） - 第69题 Plus One</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:48:11+08:00">
-                2019-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/07/PlusOne解题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/PlusOne解题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Given a non-empty array of digits representing a non-negative integer, plus one to the integer. </span><br><span class="line"></span><br><span class="line"> The digits are stored such that the most significant digit is at the head of the list, and each element in the array contain a single digit. </span><br><span class="line"></span><br><span class="line"> You may assume the integer does not contain any leading zero, except the number 0 itself. </span><br><span class="line"></span><br><span class="line"> Example 1: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: [1,2,3]</span><br><span class="line">Output: [1,2,4]</span><br><span class="line">Explanation: The array represents the integer 123.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Example 2: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: [4,3,2,1]</span><br><span class="line">Output: [4,3,2,2]</span><br><span class="line">Explanation: The array represents the integer 4321.</span><br></pre></td></tr></table></figure>
-
-<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
-<p>给定一个非空的数字数组，表示一个非负整数，加上1的整数次方。<br>这些数字的存储方式是，最有效的数字位于列表的顶部，数组中的每个元素都包含一个数字。<br>您可以假设整数不包含任何前导零，除了数字0本身。<br>示例1:<br>输入:(1、2、3)<br>输出(1、2、4):<br>说明:数组表示整数123。<br>示例2:<br>输入:[4、3、2、1)<br>输出:[4、3、2、2]<br>说明:数组表示整数4321。</p>
-</blockquote>
-<hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题是基于数组后面加1，一般没有什么问题，特别要注意一下如果进位是最大的怎么办，我这边用了额外的数组来扩容这一步操作，同步赋值，如果有进位，则用新的数组。</p>
-<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
-<li><p>按照我们的思路来编辑，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">if (digits.length &lt; 1) &#123;</span><br><span class="line">        return digits;</span><br><span class="line">    &#125;</span><br><span class="line">    int len = digits.length;</span><br><span class="line"></span><br><span class="line">    int[] result = new int[len];</span><br><span class="line">    int[] result1 = new int[len + 1];</span><br><span class="line">    int add = 1;</span><br><span class="line">    for (int i = len - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">        int temp = add + digits[i];</span><br><span class="line">        add = temp / 10;</span><br><span class="line">        result[i] = temp % 10;</span><br><span class="line">        result1[i + 1] = result[i];</span><br><span class="line">    &#125;</span><br><span class="line">    if (add != 0) &#123;</span><br><span class="line">        result1[0] = add;</span><br><span class="line">        return result1;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环m所以f(n)=(n)=n;所以O(f(n))=O(n),即T(n)=O(n)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案使用了两个额外数组，所以空间复杂度是O(2n+1)=O(n);</p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉, 我是用了新的数组来替换原来的数组，当然也可以在原来的数组上修改，这样空间会更加小一点。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/LengthOfLastWord解题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FightCrap">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FightCrap's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/07/LengthOfLastWord解题/" itemprop="url">LeetCode集锦（十四） - 第58题 Length of Last Word</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:47:38+08:00">
-                2019-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/07/LengthOfLastWord解题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/LengthOfLastWord解题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Given a string s consists of upper/lower-case alphabets and empty space characters &apos; &apos;, return the length of last word in the string. </span><br><span class="line"></span><br><span class="line"> If the last word does not exist, return 0. </span><br><span class="line"></span><br><span class="line"> Note: A word is defined as a character sequence consists of non-space characters only. </span><br><span class="line"></span><br><span class="line"> Example: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: &quot;Hello World&quot;</span><br><span class="line">Output: 5</span><br></pre></td></tr></table></figure>
-
-<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
-<p>给定一个字符串s由大写/小写字母和空空格字符’ ‘组成，返回字符串中最后一个单词的长度。<br>如果最后一个单词不存在，返回0。<br>注意:单词被定义为由非空格字符组成的字符序列。<br>例子:<br>输入:“Hello World”<br>输出:5<br>给定整数数组号，找到具有最大和的相邻子数组(至少包含一个数字)并返回其和。  </p>
-</blockquote>
-<hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题是很简单，我们只要遍历字符，统计不为空字符的字数，遇到空字符则重新计数，并记录上一次操作的数量，如果下一次为空串，则沿用上一次的结果。当然可以直接用string的方法来实现。</p>
-<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
-<li><p>按照我们的思路来编辑，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">if (s == null || &quot;&quot;.equals(s)) &#123;</span><br><span class="line">       return 0;</span><br><span class="line">   &#125;</span><br><span class="line">   int count = 0;</span><br><span class="line">   int lastCount = count;</span><br><span class="line">   for (int i = 0; i &lt; s.length(); i++) &#123;</span><br><span class="line">       if (s.charAt(i) == &apos; &apos;) &#123;</span><br><span class="line">           lastCount = count == 0 ? lastCount : count;</span><br><span class="line">           count = 0;</span><br><span class="line">           continue;</span><br><span class="line">       &#125;</span><br><span class="line">       count++;</span><br><span class="line">   &#125;</span><br><span class="line">   return count == 0 ? lastCount : count;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环m所以f(n)=(n)=n;所以O(f(n))=O(n),即T(n)=O(n)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案没有使用额外的空间，所以空间复杂度是O(1);</p>
-</li>
-<li><p>借用String的方法，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if (s == null || &quot;&quot;.equals(s)) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    s = s.trim();</span><br><span class="line"></span><br><span class="line">    return s.length() - s.lastIndexOf(&quot; &quot;) - 1;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环m所以f(n)=(n)=n;所以O(f(n))=O(n),即T(n)=O(n)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案没有使用额外的空间，所以空间复杂度是O(1);</p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉,内容很简单，只要获取最后一个非空串的字符长度，特别要注意最后全是空字符的情况，那么是往前沿哦。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/MaximumSubArray解题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FightCrap">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FightCrap's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/07/MaximumSubArray解题/" itemprop="url">LeetCode集锦（十三） - 第53题 Maximum Subarray</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:47:07+08:00">
-                2019-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/07/MaximumSubArray解题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/MaximumSubArray解题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum. </span><br><span class="line"></span><br><span class="line"> Example: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: [-2,1,-3,4,-1,2,1,-5,4],</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: [4,-1,2,1] has the largest sum = 6.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Follow up: </span><br><span class="line"></span><br><span class="line"> If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.</span><br></pre></td></tr></table></figure>
-
-<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
-<p>给定整数数组号，找到具有最大和的相邻子数组(至少包含一个数字)并返回其和。<br>例子:<br>输入:[2,1,3、4、1、2、1、5、4],<br>输出:6<br>说明:[4，-1,2,1]的和最大= 6。<br>跟进:<br>如果您已经找到了O(n)的解决方案，那么尝试使用分治方法编写另一个解决方案，这种方法更加微妙。  </p>
-</blockquote>
-<hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题是找寻最大值，我们第一想到的方式是遍历，一个个的加过去，判断出现的最大值是多少，当然这个不失为一种方式，但是换个角度想，加上正数肯定是越来越大的，加上负数是越来越小，如果加上一个负数，都比当前值要小了，那么就没有必要在加了，可以把累加值替换为当前值了，这样就不需要重头遍历判断了。所以按照这样子想，是否可以一次遍历就解决呢？</p>
-<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
-<li><p>按照我们的思路来编辑，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if (nums.length &lt; 1) &#123;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int max = nums[0];</span><br><span class="line">int sum = max;</span><br><span class="line">for (int i = 1; i &lt; nums.length; i++) &#123;</span><br><span class="line">    sum=sum + nums[i] &lt; nums[i]?nums[i]:sum + nums[i];</span><br><span class="line">    max=Math.max(sum,max);</span><br><span class="line">&#125;</span><br><span class="line">return max;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环m所以f(n)=(n)=n;所以O(f(n))=O(n),即T(n)=O(n)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案没有使用额外的空间，所以空间复杂度是O(1);</p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，本题只想到了一种方法，抛开遍历，只用了这一种方法，但是是否可以分治法来解决，貌似不太想得到。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/CountAndSay解题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FightCrap">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="http://img.touxiangbbs.com/touxiang/2015-05-17/b20fafcba4c050315b7e3d46c058e34f.jpeg_200.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FightCrap's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/07/CountAndSay解题/" itemprop="url">LeetCode集锦（十二） - 第38题 Count and Say</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:46:37+08:00">
-                2019-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/07/CountAndSay解题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/CountAndSay解题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">The count-and-say sequence is the sequence of integers with the first five terms as following: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1.     1</span><br><span class="line">2.     11</span><br><span class="line">3.     21</span><br><span class="line">4.     1211</span><br><span class="line">5.     111221</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 1 is read off as &quot;one 1&quot; or 11. </span><br><span class="line">11 is read off as &quot;two 1s&quot; or 21. </span><br><span class="line">21 is read off as &quot;one 2, then one 1&quot; or 1211. </span><br><span class="line"></span><br><span class="line"> Given an integer n where 1 ≤ n ≤ 30, generate the nth term of the count-and-say sequence. </span><br><span class="line"></span><br><span class="line"> Note: Each term of the sequence of integers will be represented as a string. </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Example 1: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: 1</span><br><span class="line">Output: &quot;1&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Example 2: </span><br><span class="line"></span><br><span class="line">Input: 4</span><br><span class="line">Output: &quot;1211&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
-<p>count-and-say序列是前五项为整数的序列:<br>1     1<br>2     11<br>3      21<br>4     1211<br>5     111221<br>1被读作“一个 1”或“11”。<br>11被读作“两个1”或21。<br>21被读作“1个2，然后1个1”或1211。<br>给定一个整数n，其中1≤n≤30，生成count-and-say序列的第n项。<br>注意:整数序列的每一项都表示为字符串。<br>示例1:<br>输入:1<br>输出:“1”<br>示例2:<br>输入:4<br>输出:“1211”  </p>
-</blockquote>
-<hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题其实很简单，但是题目理解上可能不一样,本人一开始没有理解题意，看了下别人的解释才最终明白。本题主要是一个统计和说两个概念，按照我们正常习惯从左往右数和说，比如“1”，我们统计1的个数为1，所以count-and-say格式，第二层就是“11”，也就是一个1的意思，对应“11”而言，我们统计的1的个数为2，按照count-and-say格式，就是“21”，也就是第三层答案，2个1的意思。同理“21”，就是1个2，1个1，所以就是“1211”。本题的解题思路也是如此。</p>
-<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
-<li><p>按照我们的思路来编辑，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">String first = &quot;1&quot;;</span><br><span class="line">  if (n &lt;= 1) &#123;</span><br><span class="line">      return first;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  StringBuilder stringBuilder = new StringBuilder(first);</span><br><span class="line">  for (int i = 1; i &lt; n; i++) &#123;</span><br><span class="line">      StringBuilder stringBuilder1 = new StringBuilder();</span><br><span class="line">      char pre = stringBuilder.charAt(0);</span><br><span class="line">      int count = 1;</span><br><span class="line">      for (int m = 1; m &lt; stringBuilder.length(); m++) &#123;</span><br><span class="line">          if (stringBuilder.charAt(m) != pre) &#123;</span><br><span class="line">              stringBuilder1.append(count).append(pre);</span><br><span class="line">              pre = stringBuilder.charAt(m);</span><br><span class="line">              count = 1;</span><br><span class="line">              continue;</span><br><span class="line">          &#125;</span><br><span class="line">          count++;</span><br><span class="line">      &#125;</span><br><span class="line">      stringBuilder1.append(count).append(pre);</span><br><span class="line">      stringBuilder = stringBuilder1;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return stringBuilder.toString();</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环，循环层数为2，即T(n)=O(n^2)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案没有使用额外的空间，所以空间复杂度是O(1);</p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，了解题意还是很重要的。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2034,7 +2113,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

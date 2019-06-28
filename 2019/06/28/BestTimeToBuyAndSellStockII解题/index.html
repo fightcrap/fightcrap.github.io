@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="问题1234567891011121314151617181920212223Implement strStr(). Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. Example 1:Input: haystack = &amp;quot;he">
+<meta name="description" content="问题12345678910111213141516171819202122232425262728293031Say you have an array for which the ith element is the price of a given stock on day i.  Design an algorithm to find the maximum profit. You may">
 <meta name="keywords" content="Leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode集锦（十） - 第28题 Implement StrStr">
-<meta property="og:url" content="https://fightcrap.github.io/2019/06/07/ImplementStrStr解题/index.html">
+<meta property="og:title" content="LeetCode 集锦（三十二） - 第 122 题 Best Time to Buy and Sell Stock II">
+<meta property="og:url" content="https://fightcrap.github.io/2019/06/28/BestTimeToBuyAndSellStockII解题/index.html">
 <meta property="og:site_name" content="FightCrap&#39;s blog">
-<meta property="og:description" content="问题1234567891011121314151617181920212223Implement strStr(). Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. Example 1:Input: haystack = &amp;quot;he">
+<meta property="og:description" content="问题12345678910111213141516171819202122232425262728293031Say you have an array for which the ith element is the price of a given stock on day i.  Design an algorithm to find the maximum profit. You may">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-07T15:48:31.889Z">
+<meta property="og:updated_time" content="2019-06-28T06:07:03.805Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode集锦（十） - 第28题 Implement StrStr">
-<meta name="twitter:description" content="问题1234567891011121314151617181920212223Implement strStr(). Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. Example 1:Input: haystack = &amp;quot;he">
+<meta name="twitter:title" content="LeetCode 集锦（三十二） - 第 122 题 Best Time to Buy and Sell Stock II">
+<meta name="twitter:description" content="问题12345678910111213141516171819202122232425262728293031Say you have an array for which the ith element is the price of a given stock on day i.  Design an algorithm to find the maximum profit. You may">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://fightcrap.github.io/2019/06/07/ImplementStrStr解题/">
+  <link rel="canonical" href="https://fightcrap.github.io/2019/06/28/BestTimeToBuyAndSellStockII解题/">
 
 
 
 
 
-  <title>LeetCode集锦（十） - 第28题 Implement StrStr | FightCrap's blog</title>
+  <title>LeetCode 集锦（三十二） - 第 122 题 Best Time to Buy and Sell Stock II | FightCrap's blog</title>
   
 
 
@@ -254,7 +254,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/ImplementStrStr解题/">
+    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/28/BestTimeToBuyAndSellStockII解题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FightCrap">
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode集锦（十） - 第28题 Implement StrStr</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode 集锦（三十二） - 第 122 题 Best Time to Buy and Sell Stock II</h1>
         
 
         <div class="post-meta">
@@ -283,8 +283,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:45:25+08:00">
-                2019-06-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-28T14:03:30+08:00">
+                2019-06-28
               </time>
             
 
@@ -324,8 +324,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/06/07/ImplementStrStr解题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/ImplementStrStr解题/" itemprop="commentCount"></span>
+                <a href="/2019/06/28/BestTimeToBuyAndSellStockII解题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/28/BestTimeToBuyAndSellStockII解题/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -353,32 +353,24 @@
       
 
       
-        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Implement strStr().</span><br><span class="line"></span><br><span class="line"> Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.</span><br><span class="line"></span><br><span class="line"> Example 1:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: haystack = &quot;hello&quot;, needle = &quot;ll&quot;</span><br><span class="line">Output: 2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Example 2:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: haystack = &quot;aaaaa&quot;, needle = &quot;bba&quot;</span><br><span class="line">Output: -1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Clarification:</span><br><span class="line"></span><br><span class="line"> What should we return when needle is an empty string? This is a great question to ask during an interview.</span><br><span class="line"></span><br><span class="line"> For the purpose of this problem, we will return 0 when needle is an empty string. This is consistent to C&apos;s strstr() and Java&apos;s indexOf().</span><br></pre></td></tr></table></figure>
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Say you have an array for which the ith element is the price of a given stock on day i. </span><br><span class="line"></span><br><span class="line"> Design an algorithm to find the maximum profit. You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times). </span><br><span class="line"></span><br><span class="line"> Note: You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again). </span><br><span class="line"></span><br><span class="line"> Example 1: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: [7,1,5,3,6,4]</span><br><span class="line">Output: 7</span><br><span class="line">Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.</span><br><span class="line">             Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Example 2: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: [1,2,3,4,5]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.</span><br><span class="line">             Note that you cannot buy on day 1, buy on day 2 and sell them later, as you are</span><br><span class="line">             engaging multiple transactions at the same time. You must sell before buying again.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Example 3: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: [7,6,4,3,1]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: In this case, no transaction is done, i.e. max profit = 0.</span><br></pre></td></tr></table></figure>
 
 <h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
-<p>实现strStr ()。<br>返回haystack中needle的第一次出现的索引，如果针不是haystack的一部分，返回-1。<br>示例1:<br>输入:haystack = “hello”， needle = “ll”<br>输出:2<br>示例2:<br>输入:haystack = “aaaaa”， needle = “bba”<br>输出:1<br>澄清:<br>当needle是空字符串时，我们应该返回什么?这是一个非常适合在面试中问的问题。<br>对于这个问题，当needle为空字符串时，我们将返回0。这与C的strstr()和Java的indexOf()一致。</p>
+<p>假设你有一个数组，其中第i个元素是某只股票在第i天的价格。<br>设计一个算法来寻找最大的利润。您可以完成任意数量的事务(即，买进一股，再卖出一股)。<br>注:你不可同时进行多项交易(即，你必须先把股票卖了再买。<br>示例1:<br>输入:[7、1、5、3、6、4]<br>输出:7<br>说明:第2天买入(价格= 1)，第3天卖出(价格= 5)，利润= 5-1 = 4。<br>然后第4天买进(价格= 3)，第5天卖出(价格= 6)，利润= 6-3 = 3。<br>示例2:<br>输入:(1、2、3、4、5)<br>输出:4<br>说明:第一天买入(价格= 1)，第5天卖出(价格= 5)，利润= 5-1 = 4。<br>注意，你不能在第一天买，在第2天买，然后像现在这样卖<br>同时处理多个事务。你必须先卖再买。<br>示例3:<br>输入:[7、6、4、3、1]<br>输出:0<br>说明:在本例中，没有进行任何交易，即最大利润= 0。  </p>
 </blockquote>
 <hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题思路很简单，就是让我们实现java的indexof方法，我们根据循环判断haystack中是否有needle字符就行了，当然，可以直接调用java的api。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题是上一题的升华版，由于我们知道如果当前值比之前定位的值大的话，卖出肯定是赚，同样如果定位到比目前最小值还小，那么就可以把前面最大的价格给加起来，这样子就代表之前购买的最大值已经购买，后续也是一样的。</p>
 <h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
-<li><p>第一种解题方法，按照思路编辑，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">if (haystack == null || &quot;&quot;.equals(needle)) &#123;</span><br><span class="line">       return 0;</span><br><span class="line">   &#125;</span><br><span class="line">   int len = haystack.length() - needle.length()+1;</span><br><span class="line">   int needLen = needle.length();</span><br><span class="line">   for (int i = 0; i &lt; len; i++) &#123;</span><br><span class="line">       if (haystack.charAt(i) != needle.charAt(0)) &#123;</span><br><span class="line">           continue;</span><br><span class="line">       &#125;</span><br><span class="line">       int m;</span><br><span class="line">       for (m = 1; m &lt; needle.length(); m++) &#123;</span><br><span class="line">           if (haystack.charAt(i + m) != needle.charAt(m)) &#123;</span><br><span class="line">               break;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       if (m == needLen) &#123;</span><br><span class="line">           return i;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   return -1;</span><br></pre></td></tr></table></figure>
+<li><p>按照思路来编写结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">if(prices.length&lt;=0)&#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    int result = 0;</span><br><span class="line">    int temp = prices[0];</span><br><span class="line">    int index = 0;</span><br><span class="line"></span><br><span class="line">    for (int i = 1; i &lt; prices.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">        index = Math.max(prices[i] - temp, index);</span><br><span class="line">        if (prices[i] &lt; prices[i - 1]) &#123;</span><br><span class="line">            result += index;</span><br><span class="line">            temp = prices[i];</span><br><span class="line">            index = 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return result+index;</span><br></pre></td></tr></table></figure>
 
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环，循环层数为2,所以O(f(n))=O(Mn),即T(n)=O(n^2)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案没有使用额外的空间，所以空间复杂度是O(1);</p>
-</li>
-<li><p>第二种解题方法，直接调用api，简单粗暴(当然这个是不符合要求的），代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">if (haystack == null ) &#123;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return haystack.indexOf(needle);</span><br></pre></td></tr></table></figure>
-
-<p> <strong>时间复杂度</strong>:
- 该方案T(n)=O(1)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案没有使用额外的空间，所以空间复杂度是O(1);</p>
+<p><strong>时间复杂度</strong>:
+该方案用了一层遍历的方式，所以为O(n)=O(n)</p>
+<p><strong>空间复杂度</strong>:
+该方案没有使用额外空间来存储，所以空间复杂度O(n)=O(1)</p>
 </li>
 </ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，本题只想到了一种方法，第二种方法是不符合要求的，偷懒专用，毕竟都选用了的语言，语言自带的不用白不用</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，利用上一步的思路，把每一段的最大值都加起来，也就是利润最大的结果</p>
 
       
     </div>
@@ -409,8 +401,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/07/RemoveElement解题/" rel="next" title="LeetCode集锦（九） - 第27题 Remove Element">
-                <i class="fa fa-chevron-left"></i> LeetCode集锦（九） - 第27题 Remove Element
+              <a href="/2019/06/28/BestTimeToBuyAndSellStock解题/" rel="next" title="LeetCode 集锦（三十一） - 第 121 题 Best Time to Buy and Sell Stock">
+                <i class="fa fa-chevron-left"></i> LeetCode 集锦（三十一） - 第 121 题 Best Time to Buy and Sell Stock
               </a>
             
           </div>
@@ -419,8 +411,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/07/SearchInsertPosition解题/" rel="prev" title="LeetCode集锦（十一） -第35题 Search Insert Position">
-                LeetCode集锦（十一） -第35题 Search Insert Position <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/28/ValidPalindrome解题/" rel="prev" title="LeetCode 集锦（三十三） - 第 125 题 Valid Palindrome">
+                LeetCode 集锦（三十三） - 第 125 题 Valid Palindrome <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -744,9 +736,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://fightcrap.github.io/2019/06/07/ImplementStrStr解题/';
-          this.page.identifier = '2019/06/07/ImplementStrStr解题/';
-          this.page.title = 'LeetCode集锦（十） - 第28题 Implement StrStr';
+          this.page.url = 'https://fightcrap.github.io/2019/06/28/BestTimeToBuyAndSellStockII解题/';
+          this.page.identifier = '2019/06/28/BestTimeToBuyAndSellStockII解题/';
+          this.page.title = 'LeetCode 集锦（三十二） - 第 122 题 Best Time to Buy and Sell Stock II';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://fightcrap.disqus.com/embed.js';

@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="问题1234567891011121314151617181920212223Implement strStr(). Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. Example 1:Input: haystack = &amp;quot;he">
+<meta name="description" content="问题123456789101112131415161718192021Say you have an array for which the ith element is the price of a given stock on day i.  If you were only permitted to complete at most one transaction (i.e., buy on">
 <meta name="keywords" content="Leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode集锦（十） - 第28题 Implement StrStr">
-<meta property="og:url" content="https://fightcrap.github.io/2019/06/07/ImplementStrStr解题/index.html">
+<meta property="og:title" content="LeetCode 集锦（三十一） - 第 121 题 Best Time to Buy and Sell Stock">
+<meta property="og:url" content="https://fightcrap.github.io/2019/06/28/BestTimeToBuyAndSellStock解题/index.html">
 <meta property="og:site_name" content="FightCrap&#39;s blog">
-<meta property="og:description" content="问题1234567891011121314151617181920212223Implement strStr(). Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. Example 1:Input: haystack = &amp;quot;he">
+<meta property="og:description" content="问题123456789101112131415161718192021Say you have an array for which the ith element is the price of a given stock on day i.  If you were only permitted to complete at most one transaction (i.e., buy on">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-07T15:48:31.889Z">
+<meta property="og:updated_time" content="2019-06-28T06:07:03.805Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode集锦（十） - 第28题 Implement StrStr">
-<meta name="twitter:description" content="问题1234567891011121314151617181920212223Implement strStr(). Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. Example 1:Input: haystack = &amp;quot;he">
+<meta name="twitter:title" content="LeetCode 集锦（三十一） - 第 121 题 Best Time to Buy and Sell Stock">
+<meta name="twitter:description" content="问题123456789101112131415161718192021Say you have an array for which the ith element is the price of a given stock on day i.  If you were only permitted to complete at most one transaction (i.e., buy on">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://fightcrap.github.io/2019/06/07/ImplementStrStr解题/">
+  <link rel="canonical" href="https://fightcrap.github.io/2019/06/28/BestTimeToBuyAndSellStock解题/">
 
 
 
 
 
-  <title>LeetCode集锦（十） - 第28题 Implement StrStr | FightCrap's blog</title>
+  <title>LeetCode 集锦（三十一） - 第 121 题 Best Time to Buy and Sell Stock | FightCrap's blog</title>
   
 
 
@@ -254,7 +254,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/07/ImplementStrStr解题/">
+    <link itemprop="mainEntityOfPage" href="https://fightcrap.github.io/2019/06/28/BestTimeToBuyAndSellStock解题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FightCrap">
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode集锦（十） - 第28题 Implement StrStr</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode 集锦（三十一） - 第 121 题 Best Time to Buy and Sell Stock</h1>
         
 
         <div class="post-meta">
@@ -283,8 +283,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:45:25+08:00">
-                2019-06-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-28T14:02:52+08:00">
+                2019-06-28
               </time>
             
 
@@ -324,8 +324,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/06/07/ImplementStrStr解题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/07/ImplementStrStr解题/" itemprop="commentCount"></span>
+                <a href="/2019/06/28/BestTimeToBuyAndSellStock解题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/28/BestTimeToBuyAndSellStock解题/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -353,32 +353,32 @@
       
 
       
-        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Implement strStr().</span><br><span class="line"></span><br><span class="line"> Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.</span><br><span class="line"></span><br><span class="line"> Example 1:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: haystack = &quot;hello&quot;, needle = &quot;ll&quot;</span><br><span class="line">Output: 2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Example 2:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: haystack = &quot;aaaaa&quot;, needle = &quot;bba&quot;</span><br><span class="line">Output: -1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Clarification:</span><br><span class="line"></span><br><span class="line"> What should we return when needle is an empty string? This is a great question to ask during an interview.</span><br><span class="line"></span><br><span class="line"> For the purpose of this problem, we will return 0 when needle is an empty string. This is consistent to C&apos;s strstr() and Java&apos;s indexOf().</span><br></pre></td></tr></table></figure>
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Say you have an array for which the ith element is the price of a given stock on day i. </span><br><span class="line"></span><br><span class="line"> If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit. </span><br><span class="line"></span><br><span class="line"> Note that you cannot sell a stock before you buy one. </span><br><span class="line"></span><br><span class="line"> Example 1: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: [7,1,5,3,6,4]</span><br><span class="line">Output: 5</span><br><span class="line">Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.</span><br><span class="line">             Not 7-1 = 6, as selling price needs to be larger than buying price.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> Example 2: </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Input: [7,6,4,3,1]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: In this case, no transaction is done, i.e. max profit = 0.</span><br></pre></td></tr></table></figure>
 
 <h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译:"></a>翻译:</h3><blockquote>
-<p>实现strStr ()。<br>返回haystack中needle的第一次出现的索引，如果针不是haystack的一部分，返回-1。<br>示例1:<br>输入:haystack = “hello”， needle = “ll”<br>输出:2<br>示例2:<br>输入:haystack = “aaaaa”， needle = “bba”<br>输出:1<br>澄清:<br>当needle是空字符串时，我们应该返回什么?这是一个非常适合在面试中问的问题。<br>对于这个问题，当needle为空字符串时，我们将返回0。这与C的strstr()和Java的indexOf()一致。</p>
+<p>假设你有一个数组，其中第i个元素是某只股票在第i天的价格。<br>如你最多只获准完成一项交易(即，买一股，卖一股)，设计一个算法来寻找最大的利润。<br>注意，你不能在买股票之前卖掉它。<br>示例1:<br>输入:[7、1、5、3、6、4]<br>输出:5<br>说明:第2天买入(价格= 1)，第5天卖出(价格= 6)，利润= 6-1 = 5。<br>不是7-1 = 6，因为卖价需要大于买价。<br>示例2:<br>输入:[7、6、4、3、1]<br>输出:0<br>说明:在本例中，没有进行任何交易，即最大利润= 0。  </p>
 </blockquote>
 <hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题思路很简单，就是让我们实现java的indexof方法，我们根据循环判断haystack中是否有needle字符就行了，当然，可以直接调用java的api。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>本题是找寻一个买入卖出的最大理论，其实就是寻找当前值和后续值中相差最大的正数值。可以用循环遍历的方式查询，当然也可以一次循环，如果碰到比选中值更小的，那么就替换选中值，并选择差距最大的值记录，实现很简单</p>
 <h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h2><ol>
-<li><p>第一种解题方法，按照思路编辑，代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">if (haystack == null || &quot;&quot;.equals(needle)) &#123;</span><br><span class="line">       return 0;</span><br><span class="line">   &#125;</span><br><span class="line">   int len = haystack.length() - needle.length()+1;</span><br><span class="line">   int needLen = needle.length();</span><br><span class="line">   for (int i = 0; i &lt; len; i++) &#123;</span><br><span class="line">       if (haystack.charAt(i) != needle.charAt(0)) &#123;</span><br><span class="line">           continue;</span><br><span class="line">       &#125;</span><br><span class="line">       int m;</span><br><span class="line">       for (m = 1; m &lt; needle.length(); m++) &#123;</span><br><span class="line">           if (haystack.charAt(i + m) != needle.charAt(m)) &#123;</span><br><span class="line">               break;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       if (m == needLen) &#123;</span><br><span class="line">           return i;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   return -1;</span><br></pre></td></tr></table></figure>
+<li><p>遍历方式，代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int result = 0;</span><br><span class="line">   for (int i = 0; i &lt; prices.length; i++) &#123;</span><br><span class="line">       for (int m = i + 1; m &lt; prices.length; m++) &#123;</span><br><span class="line">           result = Math.max(prices[m] - prices[i], result);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   return result;</span><br></pre></td></tr></table></figure>
 
-<p> <strong>时间复杂度</strong>:
- 该方案用了循环，循环层数为2,所以O(f(n))=O(Mn),即T(n)=O(n^2)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案没有使用额外的空间，所以空间复杂度是O(1);</p>
+<p><strong>时间复杂度</strong>:
+该方案用了两次循环遍历的方式，所以为O(n)=O(n^2)</p>
+<p><strong>空间复杂度</strong>:
+该方案没有使用额外的空间，所以空间复杂度O(n)=O(1)</p>
 </li>
-<li><p>第二种解题方法，直接调用api，简单粗暴(当然这个是不符合要求的），代码如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">if (haystack == null ) &#123;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return haystack.indexOf(needle);</span><br></pre></td></tr></table></figure>
+<li><p>一次循环方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">if (prices.length &lt;= 1) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int temp = prices[0];</span><br><span class="line">    int result = 0;</span><br><span class="line">    for (int i = 1; i &lt; prices.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">        result = Math.max(prices[i] - temp, result);</span><br><span class="line"></span><br><span class="line">        if (prices[i] &lt; temp) &#123;</span><br><span class="line">            temp = prices[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br></pre></td></tr></table></figure>
 
-<p> <strong>时间复杂度</strong>:
- 该方案T(n)=O(1)</p>
-<p> <strong>空间复杂度</strong>:
- 该方案没有使用额外的空间，所以空间复杂度是O(1);</p>
+<p><strong>时间复杂度</strong>:
+该方案用了一次遍历的方式，所以为O(n)=O(n)</p>
+<p><strong>空间复杂度</strong>:
+该方案没有使用额外的空间，所以空间复杂度O(n)=O(1)</p>
 </li>
 </ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，本题只想到了一种方法，第二种方法是不符合要求的，偷懒专用，毕竟都选用了的语言，语言自带的不用白不用</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本题的大致解法如上所诉，遍历虽然可以，但是性能不佳，可以定位比当前小的值，毕竟如果后面出现差值比较大的，小的值差值肯定更加大</p>
 
       
     </div>
@@ -409,8 +409,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/07/RemoveElement解题/" rel="next" title="LeetCode集锦（九） - 第27题 Remove Element">
-                <i class="fa fa-chevron-left"></i> LeetCode集锦（九） - 第27题 Remove Element
+              <a href="/2019/06/21/PascalTriangleII解题/" rel="next" title="LeetCode 集锦（三十） - 第 119 题 Pascal Triangle II">
+                <i class="fa fa-chevron-left"></i> LeetCode 集锦（三十） - 第 119 题 Pascal Triangle II
               </a>
             
           </div>
@@ -419,8 +419,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/07/SearchInsertPosition解题/" rel="prev" title="LeetCode集锦（十一） -第35题 Search Insert Position">
-                LeetCode集锦（十一） -第35题 Search Insert Position <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/28/BestTimeToBuyAndSellStockII解题/" rel="prev" title="LeetCode 集锦（三十二） - 第 122 题 Best Time to Buy and Sell Stock II">
+                LeetCode 集锦（三十二） - 第 122 题 Best Time to Buy and Sell Stock II <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -744,9 +744,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://fightcrap.github.io/2019/06/07/ImplementStrStr解题/';
-          this.page.identifier = '2019/06/07/ImplementStrStr解题/';
-          this.page.title = 'LeetCode集锦（十） - 第28题 Implement StrStr';
+          this.page.url = 'https://fightcrap.github.io/2019/06/28/BestTimeToBuyAndSellStock解题/';
+          this.page.identifier = '2019/06/28/BestTimeToBuyAndSellStock解题/';
+          this.page.title = 'LeetCode 集锦（三十一） - 第 121 题 Best Time to Buy and Sell Stock';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://fightcrap.disqus.com/embed.js';
